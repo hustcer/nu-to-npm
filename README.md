@@ -1,5 +1,5 @@
 
-## Publish Nushell to the NPM repository
+## Publish Nushell to the NPM Registry
 
 The only purpose of this repository is to publish [Nushell](https://github.com/nushell/nushell) officially released binaries to the `NPM` registry as is, for easy installation via `npm`.
 

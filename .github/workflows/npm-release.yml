@@ -30,7 +30,7 @@ jobs:
           version: 0.78
 
       - name: Publish to NPM
-        run: nu .github/workflows/npm.nu
+        run: nu nu/npm.nu
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 

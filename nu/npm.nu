@@ -66,7 +66,7 @@ for pkg in $pkgs {
     let bin = if $is_windows { 'nu.exe' } else { 'nu' }
     let p = if $is_windows { $pkg + '.zip' } else { $pkg + '.tar.gz' }
     let nu_pkg = $'nu-($version)-($p)'
-    # Unziped directory contains all binary files
+    # Unzipped directory contains all binary files
     let bin_dir = if $is_windows { ($nu_pkg | str replace '.zip' '') } else { $nu_pkg | str replace '.tar.gz' '' }
     print $'Downloading ($nu_pkg)...'
     aria2c $'https://github.com/nushell/nushell/releases/download/($version)/($nu_pkg)'
