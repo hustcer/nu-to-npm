@@ -94,7 +94,7 @@ for pkg in $pkgs {
     # publish the package
     cd $rls_dir
     print $'Publishing package: ($env.node_pkg)...'; hr-line
-    npm publish --access public --tag beta
+    npm publish --access public --tag latest
     cd $pkg_dir
 }
 

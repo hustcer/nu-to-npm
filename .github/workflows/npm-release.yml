@@ -52,9 +52,11 @@ jobs:
         continue-on-error: true
         shell: bash
         run: |
+          cp README.* npm/app/
           cd npm/app
+          aria2c https://raw.githubusercontent.com/nushell/nushell/main/LICENSE
           yarn install  # requires optional dependencies to be present in the registry
           yarn build
-          npm publish --access public --tag beta
+          npm publish --access public --tag latest
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
