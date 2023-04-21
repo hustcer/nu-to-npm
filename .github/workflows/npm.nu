@@ -10,10 +10,10 @@
 #  - [ ] Rename binary to 'nu' instead of 'nushell'
 #  - [ ] Add a readme file to the git repo
 #  - [ ] Add a Just task to bump version
-#  - [ ] Improve readability
+#  - [√] Improve readability
 
 let version = '0.78.0'      # nu version
-let release_ver = '0.1.7'   # npm package release version
+let release_ver = '0.1.8'   # npm package release version
 let pkgs = [
     'aarch64-apple-darwin'
     'aarch64-unknown-linux-gnu'
@@ -87,18 +87,28 @@ for pkg in $pkgs {
         | save $'($rls_dir)/package.json'
     # copy the binary into the package
     # note: windows binaries has '.exe' extension
+    hr-line
     print $'Going to cp: ($pkg_dir)/($bin_dir)/($bin) to release directory...'
     cp $'($pkg_dir)/($bin_dir)/LICENSE' $rls_dir
     cp $'($pkg_dir)/($bin_dir)/README.txt' $rls_dir
     cp $'($pkg_dir)/($bin_dir)/($bin)' $'($rls_dir)/bin'
     # publish the package
     cd $rls_dir
+    print $'Publishing package: ($env.node_pkg)...'; hr-line
     npm publish --access public --tag beta
     cd $pkg_dir
 }
 
 print 'All packages downloaded and published successfully:'
-print 'Npm directory tree:'
+print 'Npm directory tree:'; hr-line
 tree $npm_dir
-print 'Pkg directory tree:'
+print 'Pkg directory tree:'; hr-line
 tree $pkg_dir
+
+# Print a horizontal line marker
+def 'hr-line' [
+    --blank-line(-b): bool
+] {
+    print $'(ansi g)---------------------------------------------------------------------------->(ansi reset)'
+    if $blank_line { char nl }
+}

@@ -1,7 +1,8 @@
 {
   "name": "nushell",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "bin": "lib/index.js",
+  "description": "Publish the official nushell binary to npm by @hustcer",
   "scripts": {
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
@@ -13,7 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/nushell/nushell"
   },
-  "author": "Orhun Parmaksız <orhunparmaksiz@gmail.com>",
+  "author": "hustcer <hustcer@gmail.com>",
   "bugs": {
     "url": "https://github.com/nushell/nushell/issues"
   },
@@ -26,13 +27,13 @@
     "typescript": "^5.0.4"
   },
   "optionalDependencies": {
-    "@nushell/linux-x64": "0.1.7",
-    "@nushell/linux-arm": "0.1.7",
-    "@nushell/linux-arm64": "0.1.7",
-    "@nushell/linux-riscv64": "0.1.7",
-    "@nushell/darwin-x64": "0.1.7",
-    "@nushell/darwin-arm64": "0.1.7",
-    "@nushell/windows-x64": "0.1.7"
+    "@nushell/linux-x64": "0.1.8",
+    "@nushell/linux-arm": "0.1.8",
+    "@nushell/linux-arm64": "0.1.8",
+    "@nushell/linux-riscv64": "0.1.8",
+    "@nushell/darwin-x64": "0.1.8",
+    "@nushell/darwin-arm64": "0.1.8",
+    "@nushell/windows-x64": "0.1.8"
   },
   "eslintConfig": {
     "extends": [
