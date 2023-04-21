@@ -3,6 +3,10 @@
 # Created: 2023/04/20 20:06:56
 # Usage:
 #   Publish nushell binaries to npmjs.com
+# Unpublish:
+#   ['linux-x64' 'linux-riscv64' 'linux-arm' 'linux-arm64' 'darwin-x64' 'darwin-arm64' 'windows-x64'] | each {|it| npm unpublish -f --registry https://registry.npmjs.com/ $'@nushell/($it)' }
+#   npm unpublish -f --registry https://registry.npmjs.com/ nushell
+
 # TODO:
 #  - [√] Add a Just task to bump version
 #  - [√] Add a readme file to the git repo
