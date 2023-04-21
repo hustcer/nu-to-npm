@@ -1,5 +1,8 @@
 #!/usr/bin/env nu
 
+# TODO:
+#  - [ ] Refactor the code for updating the versions of optionalDependencies
+
 def main [version: string] {
 
   if not ($version | str replace '^(\d+\.)?(\d+\.)?(\*|\d+)$' '' -a | is-empty) {
