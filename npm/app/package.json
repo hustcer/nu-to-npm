@@ -3,35 +3,30 @@
   "version": "0.3.0",
   "bin": "lib/index.js",
   "description": "Publish the official nushell binary to npm by @hustcer",
-  "scripts":
-  {
+  "scripts": {
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "build": "tsc",
     "dev": "yarn build && node lib/index.js"
   },
-  "repository":
-  {
+  "repository": {
     "type": "git",
     "url": "git+https://github.com/nushell/nushell"
   },
   "author": "hustcer <hustcer@gmail.com>",
-  "bugs":
-  {
+  "bugs": {
     "url": "https://github.com/nushell/nushell/issues"
   },
   "homepage": "https://github.com/hustcer/nu-to-npm#readme",
-  "devDependencies":
-  {
+  "devDependencies": {
     "@types/node": "^18.15.12",
     "@typescript-eslint/eslint-plugin": "^5.59.0",
     "@typescript-eslint/parser": "^5.59.0",
     "eslint": "^8.38.0",
     "typescript": "^5.0.4"
   },
-  "optionalDependencies":
-  {
+  "optionalDependencies": {
     "@nushell/linux-x64": "0.3.0",
     "@nushell/linux-arm": "0.3.0",
     "@nushell/linux-arm64": "0.3.0",
@@ -40,20 +35,16 @@
     "@nushell/darwin-arm64": "0.3.0",
     "@nushell/windows-x64": "0.3.0"
   },
-  "eslintConfig":
-  {
-    "extends":
-    [
+  "eslintConfig": {
+    "extends": [
       "eslint:recommended",
       "plugin:@typescript-eslint/recommended"
     ],
     "parser": "@typescript-eslint/parser",
-    "plugins":
-    [
+    "plugins": [
       "@typescript-eslint"
     ],
-    "ignorePatterns":
-    [
+    "ignorePatterns": [
       "lib/*"
     ],
     "root": true
