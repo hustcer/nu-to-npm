@@ -4,13 +4,14 @@
 # Usage:
 #   Publish nushell binaries to npmjs.com
 # TODO:
-#  - [ ] Missing @nushell/windows-arm64
-#  - [ ] Sync nu version and npm version
+#  - [√] Add a Just task to bump version
+#  - [ ] Use rome to handle code formatting
+#  - [ ] Unify nu version and npm version
 #  - [ ] Update git repo url in package.json
 #  - [ ] Rename binary to 'nu' instead of 'nushell'
 #  - [ ] Add a readme file to the git repo
-#  - [ ] Add a Just task to bump version
-#  - [√] Improve readability
+#  - [ ] Add a workflow to test the published package
+#  - [ ] Missing @nushell/windows-arm64
 
 let version = '0.78.0'      # nu version
 let pkgs = [

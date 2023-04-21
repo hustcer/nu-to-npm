@@ -1,6 +1,6 @@
 {
   "name": "nushell",
-  "version": "0.1.10",
+  "version": "0.2.0",
   "bin": "lib/index.js",
   "description": "Publish the official nushell binary to npm by @hustcer",
   "scripts":
@@ -32,13 +32,13 @@
   },
   "optionalDependencies":
   {
-    "@nushell/linux-x64": "0.1.10",
-    "@nushell/linux-arm": "0.1.10",
-    "@nushell/linux-arm64": "0.1.10",
-    "@nushell/linux-riscv64": "0.1.10",
-    "@nushell/darwin-x64": "0.1.10",
-    "@nushell/darwin-arm64": "0.1.10",
-    "@nushell/windows-x64": "0.1.10"
+    "@nushell/linux-x64": "0.2.0",
+    "@nushell/linux-arm": "0.2.0",
+    "@nushell/linux-arm64": "0.2.0",
+    "@nushell/linux-riscv64": "0.2.0",
+    "@nushell/darwin-x64": "0.2.0",
+    "@nushell/darwin-arm64": "0.2.0",
+    "@nushell/windows-x64": "0.2.0"
   },
   "eslintConfig":
   {
