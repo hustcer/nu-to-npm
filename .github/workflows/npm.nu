@@ -5,11 +5,10 @@
 #   Publish nushell binaries to npmjs.com
 # TODO:
 #  - [√] Add a Just task to bump version
+#  - [√] Add a readme file to the git repo
 #  - [ ] Use rome to handle code formatting
 #  - [ ] Unify nu version and npm version
-#  - [ ] Update git repo url in package.json
 #  - [ ] Rename binary to 'nu' instead of 'nushell'
-#  - [ ] Add a readme file to the git repo
 #  - [ ] Add a workflow to test the published package
 #  - [ ] Missing @nushell/windows-arm64
 
@@ -63,6 +62,7 @@ for pkg in $pkgs {
     let bin = if $is_windows { 'nu.exe' } else { 'nu' }
     let p = if $is_windows { $pkg + '.zip' } else { $pkg + '.tar.gz' }
     let nu_pkg = $'nu-($version)-($p)'
+    # Unziped directory contains all binary files
     let bin_dir = if $is_windows { ($nu_pkg | str replace '.zip' '') } else { $nu_pkg | str replace '.tar.gz' '' }
     print $'Downloading ($nu_pkg)...'
     aria2c $'https://github.com/nushell/nushell/releases/download/($version)/($nu_pkg)'
@@ -80,16 +80,16 @@ for pkg in $pkgs {
     # generate package.json from the template
     open package.json.tmpl
         | str replace -s '${node_os}' $env.node_os
-        | str replace -s '${node_arch}' $env.node_arch
         | str replace -s '${node_pkg}' $env.node_pkg
+        | str replace -s '${node_arch}' $env.node_arch
         | str replace -s '${node_version}' $env.node_version
         | save $'($rls_dir)/package.json'
     # copy the binary into the package
     # note: windows binaries has '.exe' extension
     hr-line
     print $'Going to cp: ($pkg_dir)/($bin_dir)/($bin) to release directory...'
+    cp $'($__dir)/README.*' $rls_dir
     cp $'($pkg_dir)/($bin_dir)/LICENSE' $rls_dir
-    cp $'($pkg_dir)/($bin_dir)/README.txt' $rls_dir
     cp $'($pkg_dir)/($bin_dir)/($bin)' $'($rls_dir)/bin'
     # publish the package
     cd $rls_dir

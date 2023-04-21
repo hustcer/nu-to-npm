@@ -21,7 +21,7 @@
   {
     "url": "https://github.com/nushell/nushell/issues"
   },
-  "homepage": "https://github.com/nushell/nushell#readme",
+  "homepage": "https://github.com/hustcer/nu-to-npm#readme",
   "devDependencies":
   {
     "@types/node": "^18.15.12",
