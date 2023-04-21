@@ -15,7 +15,7 @@ JUST_FILE_PATH := justfile()
 default:
   @just --list --list-prefix "··· "
 
-# 更新仓库里所有 nushell 相关包的 npm 版本号，创建 git tag 并推送到远程仓库
+# 更新仓库里所有 nushell 相关包的 npm 版本号，创建 git tag 并推送到远程仓库, eg: just bump-ver 0.78.0
 bump-ver version:
   @nu nu/bump-ver.nu {{version}}
 

@@ -2,11 +2,6 @@
 
 def main [version: string] {
 
-  if $version == '' {
-    print $'Usage: just bump-ver version=1.0.0'
-    exit --now 1
-  }
-
   if not ($version | str replace '^(\d+\.)?(\d+\.)?(\*|\d+)$' '' -a | is-empty) {
     print $'(ansi r)Invalid version number: ($version)(ansi reset)'
     exit --now 1
@@ -14,15 +9,15 @@ def main [version: string] {
 
   let file = 'npm/app/package.json'
   open $file
-    | update version {|v| $version }
-    | update optionalDependencies.@nushell/linux-x64 {|v| $version }
-    | update optionalDependencies.@nushell/linux-x64 {|v| $version }
-    | update optionalDependencies.@nushell/linux-arm {|v| $version }
-    | update optionalDependencies.@nushell/linux-arm64 {|v| $version }
-    | update optionalDependencies.@nushell/linux-riscv64 {|v| $version }
-    | update optionalDependencies.@nushell/darwin-x64 {|v| $version }
-    | update optionalDependencies.@nushell/darwin-arm64 {|v| $version }
-    | update optionalDependencies.@nushell/windows-x64 {|v| $version }
+    | update version $version
+    | update optionalDependencies.@nushell/linux-x64 $version
+    | update optionalDependencies.@nushell/linux-x64 $version
+    | update optionalDependencies.@nushell/linux-arm $version
+    | update optionalDependencies.@nushell/linux-arm64 $version
+    | update optionalDependencies.@nushell/linux-riscv64 $version
+    | update optionalDependencies.@nushell/darwin-x64 $version
+    | update optionalDependencies.@nushell/darwin-arm64 $version
+    | update optionalDependencies.@nushell/windows-x64 $version
     | to json -i 2
     | save -f $file
 
