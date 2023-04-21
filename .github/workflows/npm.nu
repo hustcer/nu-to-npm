@@ -13,7 +13,6 @@
 #  - [√] Improve readability
 
 let version = '0.78.0'      # nu version
-let release_ver = '0.1.8'   # npm package release version
 let pkgs = [
     'aarch64-apple-darwin'
     'aarch64-unknown-linux-gnu'
@@ -70,8 +69,7 @@ for pkg in $pkgs {
 
     let-env node_os = ($os_map | get $pkg)
     let-env node_arch = ($arch_map | get $pkg)
-    # let-env node_version = $env.RELEASE_VERSION
-    let-env node_version = $release_ver
+    let-env node_version = $env.RELEASE_VERSION
     let rls_dir = $'($npm_dir)/($env.node_os)-($env.node_arch)'
     # note: use 'windows' as OS name instead of 'win32'
     let-env node_pkg = if $is_windows { $'@nushell/windows-($env.node_arch)' } else { $'@nushell/($env.node_os)-($env.node_arch)' }

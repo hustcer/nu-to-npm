@@ -2,8 +2,6 @@ name: Release nu to NPM
 
 on:
   push:
-    branches:
-      - develop
     tags:
       - 'v*.*.*'
 
