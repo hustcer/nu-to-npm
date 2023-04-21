@@ -6,7 +6,7 @@
 # TODO:
 #  - [√] Add a Just task to bump version
 #  - [√] Add a readme file to the git repo
-#  - [ ] Use rome to handle code formatting
+#  - [√] Use rome to handle code formatting
 #  - [ ] Unify nu version and npm version
 #  - [ ] Rename binary to 'nu' instead of 'nushell'
 #  - [ ] Add a workflow to test the published package

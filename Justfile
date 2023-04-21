@@ -38,6 +38,7 @@ bump-ver version:
     | to json -i 2
     | save -f $file
 
+  rome format --indent-size 2 --quote-style single --indent-style space --write npm/app
   git commit -am $'chore: bump version to ($version)'
   git tag -am $'chore: bump version to ($version)' $'v($version)'
   git push --follow-tags

@@ -6,7 +6,7 @@
  *  2. https://www.woubuc.be/blog/post/publishing-rust-binary-on-npm/
  */
 
-import { spawnSync } from "child_process";
+import { spawnSync } from 'child_process';
 
 /**
  * Returns the executable path which is located inside `node_modules`
@@ -19,10 +19,10 @@ import { spawnSync } from "child_process";
 function getExePath() {
   const arch = process.arch;
   let os = process.platform as string;
-  let extension = "";
-  if (["win32", "cygwin"].includes(process.platform)) {
-    os = "windows";
-    extension = ".exe";
+  let extension = '';
+  if (['win32', 'cygwin'].includes(process.platform)) {
+    os = 'windows';
+    extension = '.exe';
   }
 
   try {
@@ -30,7 +30,7 @@ function getExePath() {
     return require.resolve(`@nushell/${os}-${arch}/bin/nu${extension}`);
   } catch (e) {
     throw new Error(
-      `Couldn't find application binary inside node_modules for ${os}-${arch}`
+      `Couldn't find application binary inside node_modules for ${os}-${arch}`,
     );
   }
 }
@@ -40,7 +40,7 @@ function getExePath() {
  */
 function run() {
   const args = process.argv.slice(2);
-  const processResult = spawnSync(getExePath(), args, { stdio: "inherit" });
+  const processResult = spawnSync(getExePath(), args, { stdio: 'inherit' });
   process.exit(processResult.status ?? 0);
 }
 
