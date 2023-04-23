@@ -9,4 +9,6 @@
 
 ## 注意
 
+如果你在运行 `nu` 时看到 'Error: Couldn't find application binary inside node_modules...' 错误，或者在安装过程中看到 'No matching version found for nushell...' 错误，请尝试指定 `registry` 参数并重新安装：`npm i -g nushell --registry https://registry.npmjs.com`。
+
 `nushell` 的 **npm** 包内目前只包含 `nu` 二进制文件，不含官方提供的各插件，如需完整版本请自行通过源码构建或者 [由此下载](https://github.com/nushell/nushell/releases)

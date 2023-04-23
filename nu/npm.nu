@@ -102,6 +102,11 @@ for pkg in $pkgs {
     cd $pkg_dir
 }
 
+# print 'Start to sync packages to npm mirror...'; hr-line
+# npm install -g cnpm --registry=https://registry.npmmirror.com
+# cnpm sync nushell
+# open $'($npm_dir)/package.json' | get optionalDependencies | columns | each {|it| cnpm sync $it }
+
 print 'All packages downloaded and published successfully:'
 print 'Npm directory tree:'; hr-line
 tree $npm_dir

@@ -9,5 +9,7 @@ To install `nu` by npm, simply run: `npm i -g nushell`, then you can run `nu` to
 
 ## Note
 
+If you got some error like 'Error: Couldn't find application binary inside node_modules...' while running `nu` or 'No matching version found for nushell...' while installation, please specify the registry and try to install it again: `npm i -g nushell --registry https://registry.npmjs.com`.
+
 The **npm** package for `nushell` currently contains only the `nu` binary, and the official plugins were not included, if you need the full version, please build it from source or [download the packages from here](https://github.com/nushell/nushell/releases)
 
