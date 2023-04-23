@@ -1,3 +1,6 @@
+# REF:
+#   https://github.com/uraimo/run-on-arch-action
+
 name: Test Nu@npm
 
 on:
@@ -52,6 +55,7 @@ jobs:
           distro: ${{ matrix.distro }}
           githubToken: ${{ github.token }}
           run: |
+            apt install -y curl
             curl -fsSL https://fnm.vercel.app/install | bash
             source ~/.bashrc
             fnm install 16
