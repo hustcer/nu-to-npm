@@ -31,16 +31,18 @@ jobs:
 
   none-x64-check:
     runs-on: ubuntu-latest
-    name: Test Nu on ${{ matrix.distro }} ${{ matrix.arch }}
+    name: Test Nu@npm on ${{ matrix.distro }}_${{ matrix.arch }}
     # Run steps on a matrix of 3 arch/distro combinations
     strategy:
       fail-fast: false
       matrix:
         include:
           - arch: armv7
-            distro: ubuntu_latest
+            distro: ubuntu22.04
           - arch: aarch64
-            distro: ubuntu_latest
+            distro: ubuntu22.04
+          - arch: riscv64
+            distro: ubuntu22.04
 
     steps:
       - uses: uraimo/run-on-arch-action@v2
