@@ -13,10 +13,10 @@
 #  - [√] Use rome to handle code formatting
 #  - [√] Rename binary to 'nu' instead of 'nushell'
 #  - [√] Add a workflow to test the published package
-#  - [ ] Unify nu version and npm version
+#  - [√] Unify nu version and npm version
 #  - [ ] Missing @nushell/windows-arm64
 
-let version = '0.78.0'      # nu version
+let version = $env.RELEASE_VERSION      # nu version
 let pkgs = [
     'aarch64-apple-darwin'
     'aarch64-unknown-linux-gnu'
