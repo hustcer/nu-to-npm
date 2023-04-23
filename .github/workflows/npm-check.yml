@@ -1,0 +1,32 @@
+name: Test Nu@npm
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - feature/*
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  test-latest:
+    strategy:
+      matrix:
+        os: [ubuntu-22.04, macos-latest, windows-latest]
+
+    runs-on: ${{ matrix.os }}
+    name: Test (${{matrix.os}}, nu@npm)
+    steps:
+    - name: Install node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          registry-url: 'https://registry.npmjs.org'
+
+    - name: Default shell will be `nu`
+      run: |
+        npm i --location=global nushell@latest --registry https://registry.npmjs.org
+        nu -c "print $'Nu version info:(char nl)'; print (version)"
+
+
