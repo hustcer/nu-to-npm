@@ -74,6 +74,41 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@nushell/darwin-arm64@0.78.0":
+  version "0.78.0"
+  resolved "https://registry.npmmirror.com/@nushell/darwin-arm64/-/darwin-arm64-0.78.0.tgz#6d7c66516e2c8036621698118b8c9fa78def14bf"
+  integrity sha512-FWZuHeSRrb+Wxm7dUPdH9EgvmAPedtvVlVDKwgxFL1FHGtl/u4de/VsvORmnxh43+zNsb9PFUfr9rBVpghZ5/w==
+
+"@nushell/darwin-x64@0.78.0":
+  version "0.78.0"
+  resolved "https://registry.npmmirror.com/@nushell/darwin-x64/-/darwin-x64-0.78.0.tgz#705caf5ebe47de710f156197ffc371ff695a2b24"
+  integrity sha512-1N3W0dhKXwiOmtnsrRllRQLMVDjkKcU7EReNTdLsmkqxZL1pBTIjPQnFhCGdWy/0UD8tqlLWUuznZd1j3uLzLg==
+
+"@nushell/linux-arm64@0.78.0":
+  version "0.78.0"
+  resolved "https://registry.npmmirror.com/@nushell/linux-arm64/-/linux-arm64-0.78.0.tgz#22cbfaeeb77689b36007fb068a784cbf0a27c77c"
+  integrity sha512-1NUFD6NW/BTzDQNluGJ3E+Qi9eolVUg2kxk4ztaZqH8dpkKelaUtyiiKCJCAwbRUyF2v1hxU7R9wvtGWn0Phxg==
+
+"@nushell/linux-arm@0.78.0":
+  version "0.78.0"
+  resolved "https://registry.npmmirror.com/@nushell/linux-arm/-/linux-arm-0.78.0.tgz#6c78b620d2540fb052c3e82cdb7334fd6e315233"
+  integrity sha512-RAv4TDI94gmeGie6LM3ys3XsLMs3QQZJFHyFlSEQICjvHUHgdm3qluhBbSfns/v/kyQdtMF6soCpHGTmOXHu6w==
+
+"@nushell/linux-riscv64@0.78.0":
+  version "0.78.0"
+  resolved "https://registry.npmmirror.com/@nushell/linux-riscv64/-/linux-riscv64-0.78.0.tgz#7e0538f38c87bdc171e8d1334321d4740a24aa8c"
+  integrity sha512-2MeUfdInd4CM0iEP9MdvCSNndCK5WgU7z1sbrJwXltlqIhiaIYYNOPuzctCKOvdeAsXdU8SIOxsSEO0FxeSPRg==
+
+"@nushell/linux-x64@0.78.0":
+  version "0.78.0"
+  resolved "https://registry.npmmirror.com/@nushell/linux-x64/-/linux-x64-0.78.0.tgz#6ec2d78ad17f7a3c2dfee2e388d0ef1c807ad6e3"
+  integrity sha512-Zaccf+oMGjgQyUdd+ypD06VksaFJYiUpIBwKyr4OL4g5msmZkZfOtjTO/tWMGkuQ7/R6ICDIvtCn6onxvDi7HA==
+
+"@nushell/windows-x64@0.78.0":
+  version "0.78.0"
+  resolved "https://registry.npmmirror.com/@nushell/windows-x64/-/windows-x64-0.78.0.tgz#12ca1504b0364e664baed6613b688239e5ed61f3"
+  integrity sha512-m7Y6O0/dtNY4Mg7W28AUYvFftGTQ9Dsk2jPYBQORgAAWe5f4ZU0XoX9yzJYvP76oRqOc7IXEtf0LAqfoT5WOHg==
+
 "@types/json-schema@^7.0.9":
   version "7.0.11"
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.11.tgz#d421b6c527a3037f7c84433fd2c4229e016863d3"
@@ -204,36 +239,6 @@ ansi-styles@^4.1.0:
   integrity sha512-zbB9rCJAT1rbjiVDb2hqKFHNYLxgtk8NURxZ3IZwD3F6NtxbXZQCnnSi1Lkx+IDohdPlFp222wVALIheZJQSEg==
   dependencies:
     color-convert "^2.0.1"
-
-app-darwin-arm64@0.1.0:
-  version "0.1.0"
-  resolved "https://registry.npmmirror.com/app-darwin-arm64/-/app-darwin-arm64-0.1.0.tgz#1e95cbd859e53830381c96cac048e72d442476ac"
-  integrity sha512-YJ2qFbO6uQLxNz7PlOXSvp4aTqVwA/68vXxef1uMJJwDWNP9AotcifwCKVcpSIlP3QggarIGBkCwxH28QHph4A==
-
-app-darwin-x64@0.1.0:
-  version "0.1.0"
-  resolved "https://registry.npmmirror.com/app-darwin-x64/-/app-darwin-x64-0.1.0.tgz#128fac0a01b5d9fa27a4fa2c68e5b08cf4ba8f3c"
-  integrity sha512-SI80ymjxOIXnjpmwuBb1fz0dtrRRgr3gaRMqkyF5R4IrJC/pUqUOOrtQgL+BwRKy+bDAlScw1eMvKHsbmCdFrw==
-
-app-linux-arm64@0.1.0:
-  version "0.1.0"
-  resolved "https://registry.npmmirror.com/app-linux-arm64/-/app-linux-arm64-0.1.0.tgz#e0f20b90ad48ea6f12ccf6b40abc375600c7c97e"
-  integrity sha512-Vsd0stqdBPpKBN/NNzesaSCghTDUjrQKpJoo4mz5nGwc03JDi93EZoaVJUJ3pZbI1FZZBeSklRdsh6vGpehDdw==
-
-app-linux-x64@0.1.0:
-  version "0.1.0"
-  resolved "https://registry.npmmirror.com/app-linux-x64/-/app-linux-x64-0.1.0.tgz#52f95ab99d7cdce5a1e0626696368d0b3e73a026"
-  integrity sha512-gcifD+x76oIy8uqdWqdBVKGTZHxrGHg5v/E6ercDwbVbnrcSJye9BVGMyWam1lNxV1W80M0VyzHhMS8IL7xiYQ==
-
-app-windows-arm64@0.1.0:
-  version "0.1.0"
-  resolved "https://registry.npmmirror.com/app-windows-arm64/-/app-windows-arm64-0.1.0.tgz#ddf2aecab1ac7458c0ce011fb2f68f4883c821b6"
-  integrity sha512-FqbXMERFH3cYZJ0AIayuf+8I6MAwlyb4CVeGgzOmWsxA5kZfm/cNH4drS0QAZSW499oPfTUpP9BO3He5mKik7A==
-
-app-windows-x64@0.1.0:
-  version "0.1.0"
-  resolved "https://registry.npmmirror.com/app-windows-x64/-/app-windows-x64-0.1.0.tgz#abb013ea46b21e13b7fe73cfefc8001d400504d6"
-  integrity sha512-NFM5H37WT+CNlxCcBYY776b1jMeWNrVWWZIWTh4uo4O/T0VvFHUNmsTMXykfvFF+qwVjcNVRhpeghaAQgJX8bw==
 
 argparse@^2.0.1:
   version "2.0.1"
