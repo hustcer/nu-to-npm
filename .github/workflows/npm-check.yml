@@ -55,10 +55,12 @@ jobs:
           distro: ${{ matrix.distro }}
           githubToken: ${{ github.token }}
           run: |
-            apt install -y curl
-            curl -fsSL https://fnm.vercel.app/install | bash
-            source ~/.bashrc
-            fnm install 16
+            apt-get update -q -y
+            apt-get install -q -y nodejs
+            # apt install -y curl
+            # curl -fsSL https://fnm.vercel.app/install | bash
+            # source ~/.bashrc
+            # fnm install 16
             npm i --location=global nushell@latest --registry https://registry.npmjs.org
             nu -c "print $'Nu version info:(char nl)'; print (version)"
 
