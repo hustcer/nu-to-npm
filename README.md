@@ -9,9 +9,8 @@ To install `nu` by npm, simply run: `npm i -g nushell`, then you can run `nu` to
 
 ## Note
 
-If you got some error like 'Error: Couldn't find application binary inside node_modules...' while running `nu` or 'No matching version found for nushell...' while installation, please specify the registry and try to install it again: `npm i -g nushell --registry https://registry.npmjs.com`.
-
-The **npm** package for `nushell` currently contains only the `nu` binary, and the official plugins were not included, if you need the full version, please build it from source or [download the packages from here](https://github.com/nushell/nushell/releases)
+1. If you got some error like 'Error: Couldn't find application binary inside node_modules...' while running `nu` or 'No matching version found for nushell...' while installation, please specify the registry and try to install it again: `npm i -g nushell --registry https://registry.npmjs.com`.
+2. The **npm** package for `nushell` currently contains only the `nu` binary, and the official plugins were not included, if you need the full version, please build it from source or [download the packages from here](https://github.com/nushell/nushell/releases)
 
 ---
 
@@ -25,6 +24,5 @@ The **npm** package for `nushell` currently contains only the `nu` binary, and t
 
 ## 注意
 
-如果你在运行 `nu` 时看到 'Error: Couldn't find application binary inside node_modules...' 错误，或者在安装过程中看到 'No matching version found for nushell...' 错误，请尝试指定 `registry` 参数并重新安装：`npm i -g nushell --registry https://registry.npmjs.com`。
-
-`nushell` 的 **npm** 包内目前只包含 `nu` 二进制文件，不含官方提供的各插件，如需完整版本请自行通过源码构建或者 [由此下载](https://github.com/nushell/nushell/releases)
+1. 如果你在运行 `nu` 时看到 'Error: Couldn't find application binary inside node_modules...' 错误，或者在安装过程中看到 'No matching version found for nushell...' 错误，请尝试指定 `registry` 参数并重新安装：`npm i -g nushell --registry https://registry.npmjs.com`。
+2. `nushell` 的 **npm** 包内目前只包含 `nu` 二进制文件，不含官方提供的各插件，如需完整版本请自行通过源码构建或者 [由此下载](https://github.com/nushell/nushell/releases)
