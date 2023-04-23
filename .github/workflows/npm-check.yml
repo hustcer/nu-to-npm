@@ -24,9 +24,35 @@ jobs:
         node-version: '16'
         registry-url: 'https://registry.npmjs.org'
 
-    - name: Default shell will be `nu`
+    - name: Test Nu Install from NPM Registry
       run: |
         npm i --location=global nushell@latest --registry https://registry.npmjs.org
         nu -c "print $'Nu version info:(char nl)'; print (version)"
+
+  none-x64-check:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    name: Running NU on ${{ matrix.distro }} ${{ matrix.arch }}
+    # Run steps on a matrix of 3 arch/distro combinations
+    strategy:
+      matrix:
+        include:
+          - arch: armv6
+            distro: ubuntu_latest
+          - arch: armv7
+            distro: ubuntu_latest
+          - arch: aarch64
+            distro: ubuntu_latest
+
+    steps:
+      - uses: uraimo/run-on-arch-action@v2
+        name: Nu From Npm Check
+        with:
+          arch: ${{ matrix.arch }}
+          distro: ${{ matrix.distro }}
+          run: |
+            npm i --location=global nushell@latest --registry https://registry.npmjs.org
+            nu -c "print $'Nu version info:(char nl)'; print (version)"
 
 
