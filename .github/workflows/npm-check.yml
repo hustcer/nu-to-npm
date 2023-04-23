@@ -19,10 +19,10 @@ jobs:
     name: Test (${{matrix.os}}, nu@npm)
     steps:
     - name: Install node
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-          registry-url: 'https://registry.npmjs.org'
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+        registry-url: 'https://registry.npmjs.org'
 
     - name: Default shell will be `nu`
       run: |
