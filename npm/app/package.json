@@ -1,6 +1,6 @@
 {
   "name": "nushell",
-  "version": "0.3.10",
+  "version": "0.3.11",
   "bin": {
     "nu": "lib/index.js"
   },
@@ -29,13 +29,13 @@
     "typescript": "^5.0.4"
   },
   "optionalDependencies": {
-    "@nushell/linux-x64": "0.3.10",
-    "@nushell/linux-arm": "0.3.10",
-    "@nushell/linux-arm64": "0.3.10",
-    "@nushell/linux-riscv64": "0.3.10",
-    "@nushell/darwin-x64": "0.3.10",
-    "@nushell/darwin-arm64": "0.3.10",
-    "@nushell/windows-x64": "0.3.10"
+    "@nushell/linux-x64": "0.3.11",
+    "@nushell/linux-arm": "0.3.11",
+    "@nushell/linux-arm64": "0.3.11",
+    "@nushell/linux-riscv64": "0.3.11",
+    "@nushell/darwin-x64": "0.3.11",
+    "@nushell/darwin-arm64": "0.3.11",
+    "@nushell/windows-x64": "0.3.11"
   },
   "eslintConfig": {
     "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
