@@ -57,7 +57,7 @@ let arch_map = {
 
 let __dir = ($env.PWD)
 print $'Current working directory: ($__dir)'
-print 'Current env:'; print $env
+# print 'Current env:'; print $env
 mkdir pkgs; cd pkgs
 let npm_dir = $'($__dir)/npm'
 let pkg_dir = $'($__dir)/pkgs'
