@@ -1,8 +1,5 @@
 #!/usr/bin/env nu
 
-# TODO:
-#  - [ ] Refactor the code for updating the versions of optionalDependencies
-
 def main [version: string] {
 
   if not ($version | str replace '^(\d+\.)?(\d+\.)?(\*|\d+)$' '' -a | is-empty) {
@@ -11,17 +8,10 @@ def main [version: string] {
   }
 
   let file = 'npm/app/package.json'
-  open $file
+  $file
+    | open
     | update version $version
-    | update optionalDependencies.@nushell/linux-x64 $version
-    | update optionalDependencies.@nushell/linux-x64 $version
-    | update optionalDependencies.@nushell/linux-arm $version
-    | update optionalDependencies.@nushell/linux-arm64 $version
-    | update optionalDependencies.@nushell/linux-riscv64 $version
-    | update optionalDependencies.@nushell/darwin-x64 $version
-    | update optionalDependencies.@nushell/darwin-arm64 $version
-    | update optionalDependencies.@nushell/windows-x64 $version
-    | to json -i 2
+    | update optionalDependencies {|it| ($it.optionalDependencies | transpose k v | update v $version | transpose -r | into record) }
     | save -f $file
 
   rome format --indent-size 2 --quote-style single --indent-style space --write npm/app
