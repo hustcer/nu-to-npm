@@ -16,7 +16,7 @@ jobs:
         os: [ubuntu-22.04, macos-latest, windows-latest]
 
     runs-on: ${{ matrix.os }}
-    name: Test Install Nu@npm on ${{matrix.os}}_x64
+    name: Test Nu@npm on ${{matrix.os}}_x64
     steps:
     - name: Install node
       uses: actions/setup-node@v3
@@ -31,7 +31,7 @@ jobs:
 
   none-x64-check:
     runs-on: ubuntu-latest
-    name: Running NU on ${{ matrix.distro }} ${{ matrix.arch }}
+    name: Test Nu on ${{ matrix.distro }} ${{ matrix.arch }}
     # Run steps on a matrix of 3 arch/distro combinations
     strategy:
       fail-fast: false
@@ -50,7 +50,7 @@ jobs:
           distro: ${{ matrix.distro }}
           githubToken: ${{ github.token }}
           run: |
-            apt install -y node
+            apt install -y nodejs
             npm i --location=global nushell@latest --registry https://registry.npmjs.org
             nu -c "print $'Nu version info:(char nl)'; print (version)"
 
