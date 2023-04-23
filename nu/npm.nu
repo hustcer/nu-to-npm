@@ -102,11 +102,11 @@ for pkg in $pkgs {
     cd $pkg_dir
 }
 
-char nl
+print (char nl)
 print 'Start to sync packages to npmmirror.com ...'; hr-line
 npm i --location=global cnpm --registry=https://registry.npmmirror.com
-cnpm sync nushell; char nl; hr-line
-open $'($npm_dir)/app/package.json' | get optionalDependencies | columns | each {|it| cnpm sync $it; char nl; hr-line }
+cnpm sync nushell; hr-line -p
+open $'($npm_dir)/app/package.json' | get optionalDependencies | columns | each {|it| cnpm sync $it; hr-line -p }
 
 print 'All packages have been published successfully:'
 print 'Npm directory tree:'; hr-line
@@ -116,8 +116,10 @@ tree $pkg_dir
 
 # Print a horizontal line marker
 def 'hr-line' [
-    --blank-line(-b): bool
+    --prepend-line(-p): bool
+    --append-line(-a): bool
 ] {
+    if $prepend_line { print (char nl) }
     print $'(ansi g)---------------------------------------------------------------------------->(ansi reset)'
-    if $blank_line { char nl }
+    if $append_line { print (char nl) }
 }
