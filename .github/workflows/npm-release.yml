@@ -60,3 +60,23 @@ jobs:
           npm publish --access public --tag latest
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  test-npm-latest:
+    needs: publish-npm-base
+    strategy:
+      matrix:
+        os: [ubuntu-22.04, macos-latest, windows-latest]
+
+    runs-on: ${{ matrix.os }}
+    name: Test Nu@npm on x64-${{matrix.os}}
+    steps:
+    - name: Install node
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+        registry-url: 'https://registry.npmjs.org'
+
+    - name: Test Nu Install from NPM Registry
+      run: |
+        npm i --location=global nushell@latest --registry https://registry.npmjs.org
+        nu -c "print $'Nu version info:(char nl)'; print (version)"

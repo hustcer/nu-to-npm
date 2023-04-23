@@ -12,7 +12,7 @@
 #  - [√] Add a readme file to the git repo
 #  - [√] Use rome to handle code formatting
 #  - [√] Rename binary to 'nu' instead of 'nushell'
-#  - [ ] Add a workflow to test the published package
+#  - [√] Add a workflow to test the published package
 #  - [ ] Unify nu version and npm version
 #  - [ ] Missing @nushell/windows-arm64
 
@@ -106,7 +106,7 @@ print (char nl)
 print 'Start to sync packages to npmmirror.com ...'; hr-line
 npm i --location=global cnpm --registry=https://registry.npmmirror.com
 cnpm sync nushell; hr-line -p
-open $'($npm_dir)/app/package.json' | get optionalDependencies | columns | each {|it| cnpm sync $it; hr-line -p }
+open $'($npm_dir)/app/package.json' | get optionalDependencies | columns | each {|it| cnpm sync $it; hr-line -a }
 
 print 'All packages have been published successfully:'
 print 'Npm directory tree:'; hr-line
