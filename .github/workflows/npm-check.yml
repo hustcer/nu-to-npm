@@ -16,7 +16,7 @@ jobs:
         os: [ubuntu-22.04, macos-latest, windows-latest]
 
     runs-on: ${{ matrix.os }}
-    name: Test (${{matrix.os}}, nu@npm)
+    name: Test Install Nu@npm on ${{matrix.os}}_x64
     steps:
     - name: Install node
       uses: actions/setup-node@v3
@@ -44,7 +44,7 @@ jobs:
 
     steps:
       - uses: uraimo/run-on-arch-action@v2
-        name: Nu From Npm Check
+        name: Test Install Nu@npm on ${{matrix.os}}_${{ matrix.distro }}
         with:
           arch: ${{ matrix.arch }}
           distro: ${{ matrix.distro }}
