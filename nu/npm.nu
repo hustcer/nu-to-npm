@@ -11,9 +11,9 @@
 #  - [√] Add a Just task to bump version
 #  - [√] Add a readme file to the git repo
 #  - [√] Use rome to handle code formatting
-#  - [ ] Unify nu version and npm version
-#  - [ ] Rename binary to 'nu' instead of 'nushell'
+#  - [√] Rename binary to 'nu' instead of 'nushell'
 #  - [ ] Add a workflow to test the published package
+#  - [ ] Unify nu version and npm version
 #  - [ ] Missing @nushell/windows-arm64
 
 let version = '0.78.0'      # nu version
@@ -105,7 +105,7 @@ for pkg in $pkgs {
 print 'Start to sync packages to npmmirror.com ...'; hr-line
 npm i --location=global cnpm --registry=https://registry.npmmirror.com
 cnpm sync nushell
-open $'($npm_dir)/package.json' | get optionalDependencies | columns | each {|it| cnpm sync $it; hr-line }
+open $'($npm_dir)/app/package.json' | get optionalDependencies | columns | each {|it| cnpm sync $it; hr-line }
 
 print 'All packages downloaded and published successfully:'
 print 'Npm directory tree:'; hr-line
