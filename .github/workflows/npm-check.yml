@@ -54,7 +54,7 @@ jobs:
           githubToken: ${{ github.token }}
           run: |
             apt-get update -y
-            apt-get install -y --no-install-recommends --no-install-suggests nodejs npm
+            apt-get install -y -no-install-recommends nodejs npm
             npm i --location=global nushell@latest --registry https://registry.npmjs.org
             nu -c "print $'Nu version info:(char nl)'; print (version)"
 
