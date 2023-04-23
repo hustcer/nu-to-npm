@@ -31,11 +31,10 @@ jobs:
 
   none-x64-check:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
     name: Running NU on ${{ matrix.distro }} ${{ matrix.arch }}
     # Run steps on a matrix of 3 arch/distro combinations
     strategy:
+      fail-fast: false
       matrix:
         include:
           - arch: armv6
