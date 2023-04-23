@@ -102,10 +102,11 @@ for pkg in $pkgs {
     cd $pkg_dir
 }
 
+char nl
 print 'Start to sync packages to npmmirror.com ...'; hr-line
 npm i --location=global cnpm --registry=https://registry.npmmirror.com
-let npm_pkgs = (open $'($npm_dir)/app/package.json' | get optionalDependencies | columns | append nushell | str join ' ')
-cnpm sync $npm_pkgs; hr-line
+cnpm sync nushell; char nl; hr-line
+open $'($npm_dir)/app/package.json' | get optionalDependencies | columns | each {|it| cnpm sync $it; char nl; hr-line }
 
 print 'All packages have been published successfully:'
 print 'Npm directory tree:'; hr-line
