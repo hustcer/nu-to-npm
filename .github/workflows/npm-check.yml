@@ -3,14 +3,14 @@
 
 name: Test Nu@npm
 
-on:
-  push:
-    branches:
-      - main
-      - develop
-      - feature/*
-    paths-ignore:
-      - '**.md'
+# on:
+#   push:
+#     branches:
+#       - main
+#       - develop
+#       - feature/*
+#     paths-ignore:
+#       - '**.md'
 
 jobs:
   test-latest:
@@ -55,7 +55,7 @@ jobs:
           run: |
             apt-get update -y
             apt-get install -y --no-install-recommends --no-install-suggests nodejs npm
-            npm i --location=global nushell@0.3.10 --registry https://registry.npmjs.org
+            npm i --location=global nushell@latest --registry https://registry.npmjs.org
             nu -c "print $'Nu version info:(char nl)'; print (version)"
 
 
