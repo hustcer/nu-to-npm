@@ -51,21 +51,6 @@ jobs:
             uname -a
             echo ::set-output name=uname::$(uname -a)
 
-  none-x64-check:
-    runs-on: ubuntu-latest
-    name: Test Nu@npm on ${{ matrix.distro }}_${{ matrix.arch }}
-    # Run steps on a matrix of 3 arch/distro combinations
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - arch: armv7
-            distro: ubuntu22.04
-          - arch: aarch64
-            distro: ubuntu22.04
-          - arch: riscv64
-            distro: ubuntu22.04
-
     steps:
       - uses: uraimo/run-on-arch-action@v2
         name: Test Install Nu@npm on ${{matrix.os}}_${{ matrix.distro }}
@@ -74,10 +59,10 @@ jobs:
           distro: ${{ matrix.distro }}
           githubToken: ${{ github.token }}
           run: |
-            uname -a
-            echo ::set-output name=uname::$(uname -a)
-            # apt install -y nodejs
-            # npm i --location=global nushell@latest --registry https://registry.npmjs.org
-            # nu -c "print $'Nu version info:(char nl)'; print (version)"
+            curl -fsSL https://fnm.vercel.app/install | bash
+            source ~/.bashrc
+            fnm install 16
+            npm i --location=global nushell@latest --registry https://registry.npmjs.org
+            nu -c "print $'Nu version info:(char nl)'; print (version)"
 
 
