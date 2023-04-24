@@ -98,5 +98,5 @@ jobs:
       run: |
         let version = $env.RELEASE_VERSION
         print $'Installing Nu@($version) from npm...'
-        npm i --location=global 'nushell@($version)' --registry https://registry.npmjs.org
+        npm i --location=global $'nushell@($version)' --registry https://registry.npmjs.org
         print $'Nu version info:(char nl)'; print (version)
