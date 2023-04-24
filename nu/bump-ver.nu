@@ -1,9 +1,20 @@
 #!/usr/bin/env nu
 
+# TODO:
+#   - [√] Check if the tag of the specified version already exists in local git repo
+#   - [ ] Check if the nushell version has been released on github
+
+use common.nu [has-ref]
+
 def main [version: string, distTag: string = 'latest'] {
 
   if not ($version | str replace '^(\d+\.)?(\d+\.)?(\*|\d+)$' '' -a | is-empty) {
     print $'(ansi r)Invalid version number: ($version)(ansi reset)'
+    exit --now 1
+  }
+
+  if (has-ref $'v($version)') {
+    print $'(ansi r)The tag of the specified version already exists: ($version)(ansi reset)'
     exit --now 1
   }
 

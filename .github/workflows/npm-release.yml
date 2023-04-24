@@ -61,7 +61,7 @@ jobs:
           aria2c https://raw.githubusercontent.com/nushell/nushell/main/LICENSE
           yarn install  # requires optional dependencies to be present in the registry
           yarn build
-          let tag = ('npm/app/package.json' | open | get distTag)
+          let tag = ('package.json' | open | get distTag)
           npm publish --access public --tag $tag
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
