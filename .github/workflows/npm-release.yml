@@ -89,8 +89,7 @@ jobs:
     - name: Test Nu Install from NPM Registry
       shell: nu {0}
       run: |
-        # Why npm/app/package.json doesn't work?
-        let version = ($'($env.GITHUB_WORKSPACE)/npm/app/package.json' | open | get version)
+        let version = $env.RELEASE_VERSION
         print $'Installing Nu@($version) from npm...'
         npm i --location=global 'nushell@($version)' --registry https://registry.npmjs.org
         print $'Nu version info:(char nl)'; print (version)
