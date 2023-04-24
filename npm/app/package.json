@@ -4,7 +4,7 @@
   "bin": {
     "nu": "lib/index.js"
   },
-  "distTag": "latest",
+  "distTag": "beta",
   "description": "Publish the official nushell binary to npm by @hustcer",
   "scripts": {
     "typecheck": "tsc --noEmit",
