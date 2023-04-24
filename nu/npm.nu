@@ -17,7 +17,12 @@
 #  - [√] Publish to npm beta tag support
 #  - [ ] Missing @nushell/windows-arm64
 
-let version = $env.RELEASE_VERSION      # nu version
+# Published npm version for nu binary, just the same as tag version and it chould be different from nu version
+let NPM_VERSION = $env.RELEASE_VERSION
+# The nu version to release, you can fix it to a specific nu version and publish it to different npm version
+# eg: npm version: 0.78.0, 0.78.1, 0.78.2, etc. all point to the same nu version: 0.78.0, just set NU_VERSION to 0.78.0
+# They are equal to each other by default
+let NU_VERSION = $NPM_VERSION
 let pkgs = [
     'aarch64-apple-darwin'
     'aarch64-unknown-linux-gnu'
@@ -66,16 +71,16 @@ for pkg in $pkgs {
     let is_windows = ($pkg =~ 'windows')
     let bin = if $is_windows { 'nu.exe' } else { 'nu' }
     let p = if $is_windows { $pkg + '.zip' } else { $pkg + '.tar.gz' }
-    let nu_pkg = $'nu-($version)-($p)'
+    let nu_pkg = $'nu-($NU_VERSION)-($p)'
     # Unzipped directory contains all binary files
     let bin_dir = if $is_windows { ($nu_pkg | str replace '.zip' '') } else { $nu_pkg | str replace '.tar.gz' '' }
     print $'Downloading ($nu_pkg)...'
-    aria2c $'https://github.com/nushell/nushell/releases/download/($version)/($nu_pkg)'
+    aria2c $'https://github.com/nushell/nushell/releases/download/($NU_VERSION)/($nu_pkg)'
     if $is_windows { unzip $nu_pkg -d $bin_dir } else { tar xvf $nu_pkg }
 
     let-env node_os = ($os_map | get $pkg)
     let-env node_arch = ($arch_map | get $pkg)
-    let-env node_version = $env.RELEASE_VERSION
+    let-env node_version = $NPM_VERSION
     let rls_dir = $'($npm_dir)/($env.node_os)-($env.node_arch)'
     # note: use 'windows' as OS name instead of 'win32'
     let-env node_pkg = if $is_windows { $'@nushell/windows-($env.node_arch)' } else { $'@nushell/($env.node_os)-($env.node_arch)' }
@@ -87,7 +92,7 @@ for pkg in $pkgs {
         | str replace -s '${node_os}' $env.node_os
         | str replace -s '${node_pkg}' $env.node_pkg
         | str replace -s '${node_arch}' $env.node_arch
-        | str replace -s '${node_version}' $env.node_version
+        | str replace -s '${node_version}' $NPM_VERSION
         | save $'($rls_dir)/package.json'
     # copy the binary into the package
     # note: windows binaries has '.exe' extension

@@ -1,8 +1,7 @@
 #!/usr/bin/env nu
 
 # TODO:
-#   - [√] Check if the tag of the specified version already exists in local git repo
-#   - [ ] Check if the nushell version has been released on github
+#   - [√] Check if the tag of the specified version already exists in local git repository
 
 use common.nu [has-ref]
 
