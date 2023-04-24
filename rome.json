@@ -1,0 +1,16 @@
+{
+  "formatter": {
+    "indentSize": 2,
+    "lineWidth": 160,
+    "indentStyle": "space",
+    "ignore": ["lib", "node_modules"]
+  },
+  "linter": {
+    "enabled": false
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single"
+    }
+  }
+}
