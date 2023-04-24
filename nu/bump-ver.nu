@@ -1,6 +1,6 @@
 #!/usr/bin/env nu
 
-def main [version: string] {
+def main [version: string, distTag: string = 'latest'] {
 
   if not ($version | str replace '^(\d+\.)?(\d+\.)?(\*|\d+)$' '' -a | is-empty) {
     print $'(ansi r)Invalid version number: ($version)(ansi reset)'
@@ -11,6 +11,7 @@ def main [version: string] {
   $file
     | open
     | update version $version
+    | update distTag $distTag
     | update optionalDependencies {|it| ($it.optionalDependencies | transpose k v | update v $version | transpose -r | into record) }
     | save -f $file
 

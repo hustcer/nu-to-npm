@@ -14,6 +14,7 @@
 #  - [√] Rename binary to 'nu' instead of 'nushell'
 #  - [√] Add a workflow to test the published package
 #  - [√] Unify nu version and npm version
+#  - [√] Publish to npm beta tag support
 #  - [ ] Missing @nushell/windows-arm64
 
 let version = $env.RELEASE_VERSION      # nu version
@@ -97,8 +98,9 @@ for pkg in $pkgs {
     cp $'($pkg_dir)/($bin_dir)/($bin)' $'($rls_dir)/bin'
     # publish the package
     cd $rls_dir
-    print $'Publishing package: ($env.node_pkg)...'; hr-line
-    npm publish --access public --tag latest
+    let dist_tag = ($'($npm_dir)/app/package.json' | open | get distTag)
+    print $'Publishing package: ($env.node_pkg) to ($dist_tag) tag...'; hr-line
+    npm publish --access public --tag $dist_tag
     cd $pkg_dir
 }
 

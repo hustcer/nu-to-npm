@@ -16,8 +16,8 @@ default:
   @just --list --list-prefix "··· "
 
 # 更新仓库里所有 nushell 相关包的 npm 版本号，创建 git tag 并推送到远程仓库, eg: just bump-ver 0.78.0
-bump-ver version:
-  @nu nu/bump-ver.nu {{version}}
+bump-ver version distTag=('latest'):
+  @nu nu/bump-ver.nu {{version}} {{distTag}}
 
 # 扫描代码中的拼写错误, 需要本机安装 `typos-cli`, 使用：`just typos` or `just typos raw`
 typos output=('table'):
