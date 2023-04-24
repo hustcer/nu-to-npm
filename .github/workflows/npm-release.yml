@@ -62,6 +62,7 @@ jobs:
           yarn install  # requires optional dependencies to be present in the registry
           yarn build
           let tag = ('package.json' | open | get distTag)
+          print $'Publishing nushell package to npm ($tag) tag...';
           npm publish --access public --tag $tag
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
