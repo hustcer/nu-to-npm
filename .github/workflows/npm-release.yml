@@ -89,7 +89,9 @@ jobs:
     - name: Test Nu Install from NPM Registry
       shell: nu {0}
       run: |
-        let version = ('npm/app/package.json' | open | get version)
+        # open 'npm/app/package.json' does not work, we have to cd first?
+        cd npm/app
+        let version = ('package.json' | open | get version)
         print $'Installing Nu@($version) from npm...'
         npm i --location=global 'nushell@($version)' --registry https://registry.npmjs.org
         print $'Nu version info:(char nl)'; print (version)
