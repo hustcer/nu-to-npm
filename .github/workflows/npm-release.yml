@@ -67,7 +67,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-  test-npm-latest:
+  test-npm-pkg:
     needs: publish-npm-base
     strategy:
       matrix:
@@ -82,7 +82,14 @@ jobs:
         node-version: '16'
         registry-url: 'https://registry.npmjs.org'
 
+    - uses: hustcer/setup-nu@v3
+      with:
+        version: 0.78
+
     - name: Test Nu Install from NPM Registry
+      shell: nu {0}
       run: |
-        npm i --location=global nushell@latest --registry https://registry.npmjs.org
-        nu -c "print $'Nu version info:(char nl)'; print (version)"
+        let version = ('npm/app/package.json' | open | get version)
+        print $'Installing Nu@($version) from npm...'
+        npm i --location=global 'nushell@($version)' --registry https://registry.npmjs.org
+        print $'Nu version info:(char nl)'; print (version)
