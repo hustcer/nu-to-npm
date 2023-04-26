@@ -8,7 +8,6 @@ on:
 
 jobs:
   test-npm-pkg:
-    needs: publish-npm-base
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
@@ -32,8 +31,8 @@ jobs:
     - name: Test Nu Install from NPM Registry
       shell: bash
       run: |
-        echo "Installing Nu@$RELEASE_VERSION from npm...'
-        npm i --location=global nushell@$RELEASE_VERSION --registry https://registry.npmjs.org
-        echo "Nu version info:'; nu -c 'version'
+        echo "Installing Nu@$RELEASE_VERSION from npm..."
+        npm i --location=global "nushell@$RELEASE_VERSION" --registry https://registry.npmjs.org
+        echo 'Nu version info:'; nu -c 'version'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
