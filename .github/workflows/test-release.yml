@@ -1,0 +1,39 @@
+name: Release nu to NPM
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  test-npm-pkg:
+    needs: publish-npm-base
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+
+    runs-on: ${{ matrix.os }}
+    name: Test Nu@npm on x64-${{matrix.os}}
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Set the release version
+      shell: bash
+      run: echo "RELEASE_VERSION=0.79.0" >> $GITHUB_ENV
+
+    - name: Install node
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        registry-url: 'https://registry.npmjs.org'
+
+    - name: Test Nu Install from NPM Registry
+      shell: bash
+      run: |
+        echo "Installing Nu@$RELEASE_VERSION from npm...'
+        npm i --location=global nushell@$RELEASE_VERSION --registry https://registry.npmjs.org
+        echo "Nu version info:'; nu -c 'version'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
