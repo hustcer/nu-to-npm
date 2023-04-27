@@ -24,20 +24,20 @@
   },
   "homepage": "https://github.com/hustcer/nu-to-npm#readme",
   "devDependencies": {
-    "@types/node": "^18.16.0",
-    "@typescript-eslint/eslint-plugin": "^5.59.0",
-    "@typescript-eslint/parser": "^5.59.0",
+    "@types/node": "^18.16.1",
+    "@typescript-eslint/eslint-plugin": "^5.59.1",
+    "@typescript-eslint/parser": "^5.59.1",
     "eslint": "^8.39.0",
     "typescript": "^5.0.4"
   },
   "optionalDependencies": {
-    "@nushell/linux-x64": "0.75.0",
-    "@nushell/linux-arm": "0.75.0",
-    "@nushell/linux-arm64": "0.75.0",
-    "@nushell/linux-riscv64": "0.75.0",
-    "@nushell/darwin-x64": "0.75.0",
-    "@nushell/darwin-arm64": "0.75.0",
-    "@nushell/windows-x64": "0.75.0"
+    "@nushell/linux-x64": "0.79.0",
+    "@nushell/linux-arm": "0.79.0",
+    "@nushell/linux-arm64": "0.79.0",
+    "@nushell/linux-riscv64": "0.79.0",
+    "@nushell/darwin-x64": "0.79.0",
+    "@nushell/darwin-arm64": "0.79.0",
+    "@nushell/windows-x64": "0.79.0"
   },
   "eslintConfig": {
     "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],

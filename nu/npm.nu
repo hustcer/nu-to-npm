@@ -15,7 +15,7 @@
 #  - [√] Add a workflow to test the published package
 #  - [√] Unify nu version and npm version
 #  - [√] Publish to npm beta tag support
-#  - [ ] Make the script re-runable: check if the package exists before publish
+#  - [√] Make the script re-runable: check if the package exists before publish
 #  - [ ] Missing @nushell/windows-arm64
 
 # Published npm version for nu binary, just the same as tag version and it chould be different from nu version

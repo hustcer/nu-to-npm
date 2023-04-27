@@ -15,6 +15,10 @@ JUST_FILE_PATH := justfile()
 default:
   @just --list --list-prefix "··· "
 
+# Install all dependencies
+i:
+  cd npm/app; yarn install
+
 # 更新仓库里所有 nushell 相关包的 npm 版本号，创建 git tag 并推送到远程仓库, eg: just bump-ver 0.78.0
 bump-ver version distTag=('latest'):
   @nu nu/bump-ver.nu {{version}} {{distTag}}
