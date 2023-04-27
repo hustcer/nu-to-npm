@@ -1,4 +1,4 @@
-name: Release nu to NPM
+name: Release NU to NPM
 
 on:
   push:

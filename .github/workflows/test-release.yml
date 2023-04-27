@@ -1,4 +1,4 @@
-name: Release nu to NPM
+name: Test NU Packages from NPM
 
 on:
   push:
