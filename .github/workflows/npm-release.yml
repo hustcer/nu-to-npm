@@ -42,6 +42,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Set the release version
+        shell: bash
+        run: echo "RELEASE_VERSION=${GITHUB_REF:11}" >> $GITHUB_ENV
+
       - name: Install node
         uses: actions/setup-node@v3
         with:
@@ -52,7 +56,7 @@ jobs:
         with:
           version: 0.78
 
-      - name: Publish the package
+      - name: Publish the base package
         continue-on-error: true
         shell: nu {0}
         run: nu nu/npm.nu base
