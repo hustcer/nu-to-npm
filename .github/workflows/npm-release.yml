@@ -71,8 +71,11 @@ jobs:
           yarn install  # requires optional dependencies to be present in the registry
           yarn build
           let tag = ('package.json' | open | get distTag)
-          print $'Publishing nushell package to npm ($tag) tag...';
+          print $'Publishing nushell package to npm ($tag) tag...'
           npm publish --access public --tag $tag
+          print 'Start to sync packages to npmmirror.com ...'
+          npm i --location=global cnpm --registry=https://registry.npmmirror.com
+          cnpm sync nushell
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 

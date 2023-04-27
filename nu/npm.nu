@@ -16,6 +16,7 @@
 #  - [√] Unify nu version and npm version
 #  - [√] Publish to npm beta tag support
 #  - [√] Make the script re-runable: check if the package exists before publish
+#  - [ ] Refactor: Publish all packages with this script: nushell, @nushell/linux-x64, @nushell/linux-riscv64, etc.
 #  - [ ] Missing @nushell/windows-arm64
 
 # Published npm version for nu binary, just the same as tag version and it chould be different from nu version
@@ -123,7 +124,6 @@ for pkg in $pkgs {
 print (char nl)
 print 'Start to sync packages to npmmirror.com ...'; hr-line
 npm i --location=global cnpm --registry=https://registry.npmmirror.com
-cnpm sync nushell; hr-line -p
 open $'($npm_dir)/app/package.json' | get optionalDependencies | columns | each {|it| cnpm sync $it; hr-line -a }
 
 print 'All packages have been published successfully:'
