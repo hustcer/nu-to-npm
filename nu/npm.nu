@@ -16,8 +16,10 @@
 #  - [√] Unify nu version and npm version
 #  - [√] Publish to npm beta tag support
 #  - [√] Make the script re-runable: check if the package exists before publish
-#  - [ ] Refactor: Publish all packages with this script: nushell, @nushell/linux-x64, @nushell/linux-riscv64, etc.
+#  - [√] Refactor: Publish all packages with this script: nushell, @nushell/linux-x64, @nushell/linux-riscv64, etc.
 #  - [ ] Missing @nushell/windows-arm64
+
+use common.nu [hr-line]
 
 # Published npm version for nu binary, just the same as tag version and it chould be different from nu version
 let NPM_VERSION = $env.RELEASE_VERSION
@@ -65,72 +67,108 @@ let arch_map = {
 }
 
 let __dir = ($env.PWD)
-print $'Current working directory: ($__dir)'
-# print 'Current env:'; print $env
-mkdir pkgs; cd pkgs
 let npm_dir = $'($__dir)/npm'
 let pkg_dir = $'($__dir)/pkgs'
-for pkg in $pkgs {
-    let is_windows = ($pkg =~ 'windows')
-    let bin = if $is_windows { 'nu.exe' } else { 'nu' }
-    let p = if $is_windows { $pkg + '.zip' } else { $pkg + '.tar.gz' }
-    let nu_pkg = $'nu-($NU_VERSION)-($p)'
-    # Unzipped directory contains all binary files
-    let bin_dir = if $is_windows { ($nu_pkg | str replace '.zip' '') } else { $nu_pkg | str replace '.tar.gz' '' }
-    let-env node_os = ($os_map | get $pkg)
-    let-env node_arch = ($arch_map | get $pkg)
-    let-env node_version = $NPM_VERSION
-    let rls_dir = $'($npm_dir)/($env.node_os)-($env.node_arch)'
-    # note: use 'windows' as OS name instead of 'win32'
-    let-env node_pkg = if $is_windows { $'@nushell/windows-($env.node_arch)' } else { $'@nushell/($env.node_os)-($env.node_arch)' }
 
-    # Check if the package exists before publish
-    let check = (do -i { npm info $'($env.node_pkg)@($NPM_VERSION)' | complete })
-    if $check.exit_code == 0 {
-        print $'Package ($env.node_pkg)@($NPM_VERSION) already exists, skip publishing'
-        continue
+def main [type: string = 'base'] {
+    match $type {
+        'base' => { publish-base-pkg }
+        'each' => { publish-each-pkg }
+        _ => { print 'Invalid publish type: ($type)' }
     }
-
-    # Download the package and prepare for publishing
-    print $'Downloading ($nu_pkg)...'
-    aria2c $'https://github.com/nushell/nushell/releases/download/($NU_VERSION)/($nu_pkg)'
-    if $is_windows { unzip $nu_pkg -d $bin_dir } else { tar xvf $nu_pkg }
-
-    cd $npm_dir
-    # create the package directory
-    mkdir $'($rls_dir)/bin'
-    # generate package.json from the template
-    open package.json.tmpl
-        | str replace -s '${node_os}' $env.node_os
-        | str replace -s '${node_pkg}' $env.node_pkg
-        | str replace -s '${node_arch}' $env.node_arch
-        | str replace -s '${node_version}' $NPM_VERSION
-        | save $'($rls_dir)/package.json'
-    # copy the binary into the package
-    # note: windows binaries has '.exe' extension
-    hr-line
-    print $'Going to cp: ($pkg_dir)/($bin_dir)/($bin) to release directory...'
-    cp $'($__dir)/README.*' $rls_dir
-    cp $'($pkg_dir)/($bin_dir)/LICENSE' $rls_dir
-    cp $'($pkg_dir)/($bin_dir)/($bin)' $'($rls_dir)/bin'
-    # publish the package
-    cd $rls_dir
-    let dist_tag = ($'($npm_dir)/app/package.json' | open | get distTag)
-    print $'Publishing package: ($env.node_pkg) to ($dist_tag) tag...'; hr-line
-    npm publish --access public --tag $dist_tag
-    cd $pkg_dir
 }
 
-print (char nl)
-print 'Start to sync packages to npmmirror.com ...'; hr-line
-npm i --location=global cnpm --registry=https://registry.npmmirror.com
-open $'($npm_dir)/app/package.json' | get optionalDependencies | columns | each {|it| cnpm sync $it; hr-line -a }
+def 'publish-each-pkg' [] {
+    print $'Current working directory: ($__dir)'
+    # print 'Current env:'; print $env
+    mkdir pkgs; cd pkgs
 
-print 'All packages have been published successfully:'
-print 'Npm directory tree:'; hr-line
-tree $npm_dir
-print 'Pkg directory tree:'; hr-line
-tree $pkg_dir
+    for pkg in $pkgs {
+        let is_windows = ($pkg =~ 'windows')
+        let bin = if $is_windows { 'nu.exe' } else { 'nu' }
+        let p = if $is_windows { $pkg + '.zip' } else { $pkg + '.tar.gz' }
+        let nu_pkg = $'nu-($NU_VERSION)-($p)'
+        # Unzipped directory contains all binary files
+        let bin_dir = if $is_windows { ($nu_pkg | str replace '.zip' '') } else { $nu_pkg | str replace '.tar.gz' '' }
+        let-env node_os = ($os_map | get $pkg)
+        let-env node_arch = ($arch_map | get $pkg)
+        let-env node_version = $NPM_VERSION
+        let rls_dir = $'($npm_dir)/($env.node_os)-($env.node_arch)'
+        # note: use 'windows' as OS name instead of 'win32'
+        let-env node_pkg = if $is_windows { $'@nushell/windows-($env.node_arch)' } else { $'@nushell/($env.node_os)-($env.node_arch)' }
+
+        # Check if the package exists before publish
+        let check = (do -i { npm info $'($env.node_pkg)@($NPM_VERSION)' | complete })
+        if $check.exit_code == 0 {
+            print $'Package ($env.node_pkg)@($NPM_VERSION) already exists, skip publishing'
+            continue
+        }
+
+        # Download the package and prepare for publishing
+        print $'Downloading ($nu_pkg)...'
+        aria2c $'https://github.com/nushell/nushell/releases/download/($NU_VERSION)/($nu_pkg)'
+        if $is_windows { unzip $nu_pkg -d $bin_dir } else { tar xvf $nu_pkg }
+
+        cd $npm_dir
+        # create the package directory
+        mkdir $'($rls_dir)/bin'
+        # generate package.json from the template
+        open package.json.tmpl
+            | str replace -s '${node_os}' $env.node_os
+            | str replace -s '${node_pkg}' $env.node_pkg
+            | str replace -s '${node_arch}' $env.node_arch
+            | str replace -s '${node_version}' $NPM_VERSION
+            | save $'($rls_dir)/package.json'
+        # copy the binary into the package
+        # note: windows binaries has '.exe' extension
+        hr-line
+        print $'Going to cp: ($pkg_dir)/($bin_dir)/($bin) to release directory...'
+        cp $'($__dir)/README.*' $rls_dir
+        cp $'($pkg_dir)/($bin_dir)/LICENSE' $rls_dir
+        cp $'($pkg_dir)/($bin_dir)/($bin)' $'($rls_dir)/bin'
+        # publish the package
+        cd $rls_dir
+        let dist_tag = ($'($npm_dir)/app/package.json' | open | get distTag)
+        print $'Publishing package: ($env.node_pkg) to ($dist_tag) tag...'; hr-line
+        npm publish --access public --tag $dist_tag
+        cd $pkg_dir
+    }
+    print (char nl)
+
+    print 'Start to sync packages to npmmirror.com ...'; hr-line
+    npm i --location=global cnpm --registry=https://registry.npmmirror.com
+    open $'($npm_dir)/app/package.json' | get optionalDependencies | columns | each {|it| cnpm sync $it; hr-line -a }
+
+    print 'All packages have been published successfully:'
+    print 'Npm directory tree:'; hr-line
+    tree $npm_dir
+    print 'Pkg directory tree:'; hr-line
+    tree $pkg_dir
+}
+
+def 'publish-base-pkg' [] {
+    print $'Current working directory: ($__dir)'
+    # print 'Current env:'; print $env
+    let version = ('npm/app/package.json' | open | get version)
+    # Check if the package exists before publish
+    let check = (do -i { npm info $'nushell@($version)' | complete })
+    if $check.exit_code == 0 {
+        print $'Package nushell@($version) already exists, skip publishing'
+        exit 0
+    }
+
+    # Download the package and publish it
+    cp README.* npm/app/; cd npm/app
+    aria2c https://raw.githubusercontent.com/nushell/nushell/main/LICENSE
+    # requires optional dependencies to be present in the registry
+    yarn install; yarn build
+    let tag = ('package.json' | open | get distTag)
+    print $'Publishing nushell package to npm ($tag) tag...'
+    npm publish --access public --tag $tag
+    print 'Start to sync packages to npmmirror.com ...'
+    npm i --location=global cnpm --registry=https://registry.npmmirror.com
+    cnpm sync nushell
+}
 
 # Print a horizontal line marker
 def 'hr-line' [

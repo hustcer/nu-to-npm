@@ -30,7 +30,7 @@ jobs:
           version: 0.78
 
       - name: Publish to NPM
-        run: nu nu/npm.nu
+        run: nu nu/npm.nu each
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -55,27 +55,7 @@ jobs:
       - name: Publish the package
         continue-on-error: true
         shell: nu {0}
-        run: |
-          let version = ('npm/app/package.json' | open | get version)
-          # Check if the package exists before publish
-          let check = (do -i { npm info $'nushell@($version)' | complete })
-          if $check.exit_code == 0 {
-              print $'Package nushell@($version) already exists, skip publishing'
-              exit 0
-          }
-
-          # Download the package and publish it
-          cp README.* npm/app/
-          cd npm/app
-          aria2c https://raw.githubusercontent.com/nushell/nushell/main/LICENSE
-          yarn install  # requires optional dependencies to be present in the registry
-          yarn build
-          let tag = ('package.json' | open | get distTag)
-          print $'Publishing nushell package to npm ($tag) tag...'
-          npm publish --access public --tag $tag
-          print 'Start to sync packages to npmmirror.com ...'
-          npm i --location=global cnpm --registry=https://registry.npmmirror.com
-          cnpm sync nushell
+        run: nu nu/npm.nu base
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 

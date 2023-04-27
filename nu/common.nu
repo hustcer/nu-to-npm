@@ -88,14 +88,15 @@ export def 'log' [
   print $'(ansi g)------------------->  Debug End <---------------------(char nl)(ansi reset)'
 }
 
+# Print a horizontal line marker
 export def 'hr-line' [
-  --blank-line(-b): bool
+    --prepend-line(-p): bool
+    --append-line(-a): bool
 ] {
-  print $'(ansi g)---------------------------------------------------------------------------->(ansi reset)'
-  if $blank_line { char nl }
+    if $prepend_line { print (char nl) }
+    print $'(ansi g)---------------------------------------------------------------------------->(ansi reset)'
+    if $append_line { print (char nl) }
 }
-
-export def ! [b: expr] { if ($b) { false } else { true } }
 
 # Check nushell version and notify user to upgrade it
 export def 'check_nushell' [] {
