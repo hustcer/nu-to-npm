@@ -169,13 +169,3 @@ def 'publish-base-pkg' [] {
     npm i --location=global cnpm --registry=https://registry.npmmirror.com
     cnpm sync nushell
 }
-
-# Print a horizontal line marker
-def 'hr-line' [
-    --prepend-line(-p): bool
-    --append-line(-a): bool
-] {
-    if $prepend_line { print (char nl) }
-    print $'(ansi g)---------------------------------------------------------------------------->(ansi reset)'
-    if $append_line { print (char nl) }
-}
