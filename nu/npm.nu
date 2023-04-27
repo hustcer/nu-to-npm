@@ -15,6 +15,7 @@
 #  - [√] Add a workflow to test the published package
 #  - [√] Unify nu version and npm version
 #  - [√] Publish to npm beta tag support
+#  - [ ] Make the script re-runable: check if the package exists before publish
 #  - [ ] Missing @nushell/windows-arm64
 
 # Published npm version for nu binary, just the same as tag version and it chould be different from nu version
@@ -75,16 +76,25 @@ for pkg in $pkgs {
     let nu_pkg = $'nu-($NU_VERSION)-($p)'
     # Unzipped directory contains all binary files
     let bin_dir = if $is_windows { ($nu_pkg | str replace '.zip' '') } else { $nu_pkg | str replace '.tar.gz' '' }
-    print $'Downloading ($nu_pkg)...'
-    aria2c $'https://github.com/nushell/nushell/releases/download/($NU_VERSION)/($nu_pkg)'
-    if $is_windows { unzip $nu_pkg -d $bin_dir } else { tar xvf $nu_pkg }
-
     let-env node_os = ($os_map | get $pkg)
     let-env node_arch = ($arch_map | get $pkg)
     let-env node_version = $NPM_VERSION
     let rls_dir = $'($npm_dir)/($env.node_os)-($env.node_arch)'
     # note: use 'windows' as OS name instead of 'win32'
     let-env node_pkg = if $is_windows { $'@nushell/windows-($env.node_arch)' } else { $'@nushell/($env.node_os)-($env.node_arch)' }
+
+    # Check if the package exists before publish
+    let check = (do -i { npm info $'($env.node_pkg)@($NPM_VERSION)' | complete })
+    if $check.exit_code == 0 {
+        print $'Package ($env.node_pkg)@($NPM_VERSION) already exists, skip publishing'
+        continue
+    }
+
+    # Download the package and prepare for publishing
+    print $'Downloading ($nu_pkg)...'
+    aria2c $'https://github.com/nushell/nushell/releases/download/($NU_VERSION)/($nu_pkg)'
+    if $is_windows { unzip $nu_pkg -d $bin_dir } else { tar xvf $nu_pkg }
+
     cd $npm_dir
     # create the package directory
     mkdir $'($rls_dir)/bin'

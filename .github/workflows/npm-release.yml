@@ -56,6 +56,15 @@ jobs:
         continue-on-error: true
         shell: nu {0}
         run: |
+          let version = ('npm/app/package.json' | open | get version)
+          # Check if the package exists before publish
+          let check = (do -i { npm info $'nushell@($version)' | complete })
+          if $check.exit_code == 0 {
+              print $'Package nushell@($version) already exists, skip publishing'
+              exit 0
+          }
+
+          # Download the package and publish it
           cp README.* npm/app/
           cd npm/app
           aria2c https://raw.githubusercontent.com/nushell/nushell/main/LICENSE
