@@ -6,6 +6,14 @@
 # Unpublish:
 #   ['linux-x64' 'linux-riscv64' 'linux-arm' 'linux-arm64' 'darwin-x64' 'darwin-arm64' 'windows-x64'] | each {|it| npm unpublish -f --registry https://registry.npmjs.com/ $'@nushell/($it)' }
 #   npm unpublish -f --registry https://registry.npmjs.com/ nushell
+# Notes:
+#   The difference between the Rust build targets "*-linux-musl" and "*-linux-gnu" is that they use different C libraries.
+#   "musl" is a lightweight, statically linked library, whereas "gnu" is a standard, dynamically linked library.
+#   Musl has a smaller footprint compared to GNU and is designed to be compatible with as many Linux distributions as possible.
+#   This makes it a good choice for building small and statically-linked executables for use in containerized environments or
+#   systems with limited resources.
+#   On the other hand, the GNU C library is commonly used and has a larger feature set. It is typically used for building larger
+#   and dynamically-linked executables which are more flexible but have dependencies on the libraries installed on the system.
 
 # TODO:
 #  - [√] Add a Just task to bump version
@@ -26,8 +34,8 @@ let NPM_VERSION = $env.RELEASE_VERSION
 # The nu version to release, you can fix it to a specific nu version and publish it to different npm version
 # eg: npm version: 0.78.0, 0.78.1, 0.78.2, etc. all point to the same nu version: 0.78.0, just set NU_VERSION to 0.78.0
 # They are equal to each other by default
-let NU_VERSION = '0.79.0'
-# let NU_VERSION = $NPM_VERSION
+# let NU_VERSION = '0.79.0'
+let NU_VERSION = $NPM_VERSION
 let pkgs = [
     'aarch64-apple-darwin'
     'aarch64-unknown-linux-gnu'
@@ -36,7 +44,7 @@ let pkgs = [
     'x86_64-apple-darwin'
     'x86_64-pc-windows-msvc'
     # 'x86_64-unknown-linux-gnu'
-    'x86_64-unknown-linux-musl'
+    'x86_64-unknown-linux-musl'     # Using musl instead of linux-gnu to make it run more widely.
 ]
 
 # REF: https://nodejs.org/dist/latest-v18.x/docs/api/process.html#processplatform
