@@ -27,7 +27,7 @@ let NPM_VERSION = $env.RELEASE_VERSION
 # eg: npm version: 0.78.0, 0.78.1, 0.78.2, etc. all point to the same nu version: 0.78.0, just set NU_VERSION to 0.78.0
 # They are equal to each other by default
 let NU_VERSION = '0.79.0'
-let NU_VERSION = $NPM_VERSION
+# let NU_VERSION = $NPM_VERSION
 let pkgs = [
     'aarch64-apple-darwin'
     'aarch64-unknown-linux-gnu'
