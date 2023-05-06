@@ -26,7 +26,7 @@ let NPM_VERSION = $env.RELEASE_VERSION
 # The nu version to release, you can fix it to a specific nu version and publish it to different npm version
 # eg: npm version: 0.78.0, 0.78.1, 0.78.2, etc. all point to the same nu version: 0.78.0, just set NU_VERSION to 0.78.0
 # They are equal to each other by default
-# let NU_VERSION = '0.78.0'
+let NU_VERSION = '0.79.0'
 let NU_VERSION = $NPM_VERSION
 let pkgs = [
     'aarch64-apple-darwin'
@@ -35,8 +35,8 @@ let pkgs = [
     'riscv64gc-unknown-linux-gnu'
     'x86_64-apple-darwin'
     'x86_64-pc-windows-msvc'
-    'x86_64-unknown-linux-gnu'
-    # 'x86_64-unknown-linux-musl'
+    # 'x86_64-unknown-linux-gnu'
+    'x86_64-unknown-linux-musl'
 ]
 
 # REF: https://nodejs.org/dist/latest-v18.x/docs/api/process.html#processplatform
