@@ -5,7 +5,11 @@
 
 use common.nu [has-ref]
 
-def main [version: string, distTag: string = 'latest'] {
+def main [
+  version: string,
+  --nu-ver: string,
+  --dist-tag: string = 'latest',
+] {
 
   if not ($version | str replace '^(\d+\.)?(\d+\.)?(\*|\d+)$' '' -a | is-empty) {
     print $'(ansi r)Invalid version number: ($version)(ansi reset)'
@@ -17,11 +21,14 @@ def main [version: string, distTag: string = 'latest'] {
     exit --now 1
   }
 
+  let nuVer = if ($nu_ver | is-empty) { $version } else { $nu_ver }
+
   let file = 'npm/app/package.json'
   $file
     | open
-    | update version $version
-    | update distTag $distTag
+    | update nuVer $nuVer       # Nushell version to download and release to npm
+    | update version $version   # Nushell will be released under this npm version
+    | update distTag $dist_tag  # Nushell will be released to this npm dist-tag
     | update optionalDependencies {|it| ($it.optionalDependencies | transpose k v | update v $version | transpose -r | into record) }
     | save -f $file
 

@@ -29,13 +29,6 @@
 
 use common.nu [hr-line]
 
-# Published npm version for nu binary, just the same as tag version and it chould be different from nu version
-let NPM_VERSION = $env.RELEASE_VERSION
-# The nu version to release, you can fix it to a specific nu version and publish it to different npm version
-# eg: npm version: 0.78.0, 0.78.1, 0.78.2, etc. all point to the same nu version: 0.78.0, just set NU_VERSION to 0.78.0
-# They are equal to each other by default
-# let NU_VERSION = '0.79.0'
-let NU_VERSION = $NPM_VERSION
 let pkgs = [
     'aarch64-apple-darwin'
     'aarch64-unknown-linux-gnu'
@@ -77,6 +70,14 @@ let arch_map = {
 let __dir = ($env.PWD)
 let npm_dir = $'($__dir)/npm'
 let pkg_dir = $'($__dir)/pkgs'
+
+# Published npm version for nu binary, just the same as tag version and it chould be different from nu version
+let NPM_VERSION = $env.RELEASE_VERSION
+# The nu version to release, you can fix it to a specific nu version and publish it to different npm version
+# eg: npm version: 0.78.0, 0.78.1, 0.78.2, etc. all point to the same nu version: 0.78.0, just set NU_VERSION to 0.78.0
+# They are equal to each other by default
+# let NU_VERSION = '0.79.0'
+let NU_VERSION = ($'($npm_dir)/app/package.json' | open | get nuVer)
 
 def main [type: string = 'base'] {
     match $type {

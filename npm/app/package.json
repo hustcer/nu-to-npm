@@ -5,6 +5,7 @@
     "nu": "lib/index.js"
   },
   "distTag": "beta",
+  "nuVer": "0.79.0",
   "description": "Publish the official nushell binary to npm by @hustcer",
   "keywords": ["cli", "command", "nu", "nushell", "script", "shell", "terminal"],
   "scripts": {
