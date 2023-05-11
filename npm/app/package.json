@@ -6,8 +6,8 @@
   },
   "distTag": "beta",
   "nuVer": "0.79.0",
-  "description": "Publish the official nushell binary to npm by @hustcer",
-  "keywords": ["cli", "command", "nu", "nushell", "script", "shell", "terminal"],
+  "description": "Publish the official Nushell binary to npm by @hustcer",
+  "keywords": ["cli", "command", "nu", "Nushell", "script", "shell", "terminal"],
   "scripts": {
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
@@ -38,7 +38,8 @@
     "@nushell/linux-riscv64": "0.79.2",
     "@nushell/darwin-x64": "0.79.2",
     "@nushell/darwin-arm64": "0.79.2",
-    "@nushell/windows-x64": "0.79.2"
+    "@nushell/windows-x64": "0.79.2",
+    "@nushell/windows-arm64": "0.79.2"
   },
   "eslintConfig": {
     "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
