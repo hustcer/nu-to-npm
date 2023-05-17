@@ -4,9 +4,9 @@ def main [output: string] {
 
   if not (which typos | length) > 0 {
     print $'(ansi y)[WARN]: (ansi reset)`Typos` not installed, please install it by running `brew install typos-cli`...'
-    exit --now
+    exit 2
   }
-  if $output != 'table' { typos .; exit --now }
+  if $output != 'table' { typos .; exit 0 }
   typos . --format brief
     | lines
     | split column :

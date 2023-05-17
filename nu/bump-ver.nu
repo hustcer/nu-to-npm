@@ -13,12 +13,12 @@ def main [
 
   if not ($version | str replace '^(\d+\.)?(\d+\.)?(\*|\d+)$' '' -a | is-empty) {
     print $'(ansi r)Invalid version number: ($version)(ansi reset)'
-    exit --now 1
+    exit 7
   }
 
   if (has-ref $'v($version)') {
     print $'(ansi r)The tag of the specified version already exists: ($version)(ansi reset)'
-    exit --now 1
+    exit 5
   }
 
   let nuVer = if ($nu_ver | is-empty) { $version } else { $nu_ver }
