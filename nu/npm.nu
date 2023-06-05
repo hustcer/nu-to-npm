@@ -25,7 +25,7 @@
 #  - [√] Publish to npm beta tag support
 #  - [√] Make the script re-runable: check if the package exists before publish
 #  - [√] Refactor: Publish all packages with this script: nushell, @nushell/linux-x64, @nushell/linux-riscv64, etc.
-#  - [ ] Missing @nushell/windows-arm64
+#  - [√] Missing @nushell/windows-arm64
 
 use common.nu [hr-line]
 
@@ -36,6 +36,7 @@ let pkgs = [
     'riscv64gc-unknown-linux-gnu'
     'x86_64-apple-darwin'
     'x86_64-pc-windows-msvc'
+    'aarch64-pc-windows-msvc'
     # 'x86_64-unknown-linux-gnu'
     'x86_64-unknown-linux-musl'     # Using musl instead of linux-gnu to make it run more widely.
 ]
@@ -49,6 +50,7 @@ let os_map = {
     riscv64gc-unknown-linux-gnu: 'linux',
     x86_64-apple-darwin: 'darwin',
     x86_64-pc-windows-msvc: 'win32',
+    aarch64-pc-windows-msvc: 'win32',
     x86_64-unknown-linux-gnu: 'linux',
     x86_64-unknown-linux-musl: 'linux',
 }
@@ -63,6 +65,7 @@ let arch_map = {
     riscv64gc-unknown-linux-gnu: 'riscv64',
     x86_64-apple-darwin: 'x64',
     x86_64-pc-windows-msvc: 'x64',
+    aarch64-pc-windows-msvc: 'arm64',
     x86_64-unknown-linux-gnu: 'x64',
     x86_64-unknown-linux-musl: 'x64',
 }
