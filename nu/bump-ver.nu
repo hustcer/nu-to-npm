@@ -12,14 +12,14 @@ def main [
 ] {
 
   let pkg_map = {
-    '@nushell/darwin-x64': 'x86_64-apple-darwin',
     '@nushell/darwin-arm64': 'aarch64-apple-darwin',
-    '@nushell/windows-x64': 'x86_64-pc-windows-msvc',
-    '@nushell/linux-x64': 'x86_64-unknown-linux-musl',
-    '@nushell/linux-arm64': 'aarch64-unknown-linux-gnu',
-    '@nushell/windows-arm64': 'aarch64-pc-windows-msvc',
+    '@nushell/darwin-x64': 'x86_64-apple-darwin',
     '@nushell/linux-arm': 'armv7-unknown-linux-gnueabihf',
+    '@nushell/linux-arm64': 'aarch64-unknown-linux-gnu',
     '@nushell/linux-riscv64': 'riscv64gc-unknown-linux-gnu',
+    '@nushell/linux-x64': 'x86_64-unknown-linux-musl',
+    '@nushell/windows-arm64': 'aarch64-pc-windows-msvc',
+    '@nushell/windows-x64': 'x86_64-pc-windows-msvc',
   }
 
   if not ($version | str replace '^(\d+\.)?(\d+\.)?(\*|\d+)$' '' -a | is-empty) {
@@ -45,7 +45,7 @@ def main [
     | update nuVer $nuVer       # Nushell version to download and release to npm
     | update version $version   # Nushell will be released under this npm version
     | update distTag $dist_tag  # Nushell will be released to this npm dist-tag
-    | update optionalDependencies {|it| ($it.optionalDependencies | transpose k v | update v $version | transpose -r | into record) }
+    | update optionalDependencies {|it| ($pkg_map | transpose k v | update v $version | transpose -r | into record) }
     | update optionalDependencies {|it| ($it.optionalDependencies | rotate --ccw pkg ver | filter $cond | transpose -r | into record) }
     | save -f $file
 
