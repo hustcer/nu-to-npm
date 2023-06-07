@@ -118,7 +118,11 @@ def 'publish-each-pkg' [] {
 
         # Download the package and prepare for publishing
         print $'Downloading ($nu_pkg)...'
-        aria2c $'https://github.com/nushell/nushell/releases/download/($NU_VERSION)/($nu_pkg)'
+        let download = (aria2c $'https://github.com/nushell/nushell/releases/download/($NU_VERSION)/($nu_pkg)' | complete)
+        if ($download.exit_code != 0) {
+            print $'Download ($nu_pkg) failed, skip publishing'
+            continue
+        }
         if $is_windows { unzip $nu_pkg -d $bin_dir } else { tar xvf $nu_pkg }
 
         cd $npm_dir
