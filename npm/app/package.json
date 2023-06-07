@@ -1,11 +1,11 @@
 {
   "name": "nushell",
-  "version": "0.80.0",
+  "version": "0.81.0",
   "bin": {
     "nu": "lib/index.js"
   },
   "distTag": "latest",
-  "nuVer": "0.80.0",
+  "nuVer": "0.81.0",
   "description": "Publish the official nushell binary to npm by @hustcer",
   "keywords": ["cli", "command", "nu", "nushell", "script", "shell", "terminal"],
   "scripts": {
@@ -32,14 +32,12 @@
     "typescript": "^5.1.3"
   },
   "optionalDependencies": {
-    "@nushell/linux-x64": "0.80.0",
-    "@nushell/linux-arm": "0.80.0",
-    "@nushell/linux-arm64": "0.80.0",
-    "@nushell/linux-riscv64": "0.80.0",
-    "@nushell/darwin-x64": "0.80.0",
-    "@nushell/darwin-arm64": "0.80.0",
-    "@nushell/windows-x64": "0.80.0",
-    "@nushell/windows-arm64": "0.80.0"
+    "@nushell/windows-arm64": "0.81.0",
+    "@nushell/windows-x64": "0.81.0",
+    "@nushell/darwin-arm64": "0.81.0",
+    "@nushell/darwin-x64": "0.81.0",
+    "@nushell/linux-arm64": "0.81.0",
+    "@nushell/linux-x64": "0.81.0"
   },
   "eslintConfig": {
     "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
