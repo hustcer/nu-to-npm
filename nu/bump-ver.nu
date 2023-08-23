@@ -22,7 +22,7 @@ def main [
     '@nushell/windows-x64': 'x86_64-pc-windows-msvc',
   }
 
-  if not ($version | str replace '^(\d+\.)?(\d+\.)?(\*|\d+)$' '' -a | is-empty) {
+  if not ($version | str replace -ar '^(\d+\.)?(\d+\.)?(\*|\d+)$' '' | is-empty) {
     print $'(ansi r)Invalid version number: ($version)(ansi reset)'
     exit 7
   }

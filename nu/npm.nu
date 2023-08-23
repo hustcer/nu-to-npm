@@ -130,10 +130,10 @@ def 'publish-each-pkg' [] {
         mkdir $'($rls_dir)/bin'
         # generate package.json from the template
         open package.json.tmpl
-            | str replace -s '${node_os}' $env.node_os
-            | str replace -s '${node_pkg}' $env.node_pkg
-            | str replace -s '${node_arch}' $env.node_arch
-            | str replace -s '${node_version}' $NPM_VERSION
+            | str replace '${node_os}' $env.node_os
+            | str replace '${node_pkg}' $env.node_pkg
+            | str replace '${node_arch}' $env.node_arch
+            | str replace '${node_version}' $NPM_VERSION
             | save $'($rls_dir)/package.json'
         # copy the binary into the package
         # note: windows binaries has '.exe' extension
