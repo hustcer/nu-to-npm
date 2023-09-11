@@ -74,7 +74,7 @@ let __dir = ($env.PWD)
 let npm_dir = $'($__dir)/npm'
 let pkg_dir = $'($__dir)/pkgs'
 
-# Published npm version for nu binary, just the same as tag version and it chould be different from nu version
+# Published npm version for nu binary, just the same as tag version and it could be different from nu version
 let NPM_VERSION = $env.RELEASE_VERSION
 # The nu version to release, you can fix it to a specific nu version and publish it to different npm version
 # eg: npm version: 0.78.0, 0.78.1, 0.78.2, etc. all point to the same nu version: 0.78.0, just set NU_VERSION to 0.78.0
