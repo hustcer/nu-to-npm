@@ -102,12 +102,12 @@ def 'publish-each-pkg' [] {
         let nu_pkg = $'nu-($NU_VERSION)-($p)'
         # Unzipped directory contains all binary files
         let bin_dir = if $is_windows { ($nu_pkg | str replace '.zip' '') } else { $nu_pkg | str replace '.tar.gz' '' }
-        let-env node_os = ($os_map | get $pkg)
-        let-env node_arch = ($arch_map | get $pkg)
-        let-env node_version = $NPM_VERSION
+        $env.node_os = ($os_map | get $pkg)
+        $env.node_arch = ($arch_map | get $pkg)
+        $env.node_version = $NPM_VERSION
         let rls_dir = $'($npm_dir)/($env.node_os)-($env.node_arch)'
         # note: use 'windows' as OS name instead of 'win32'
-        let-env node_pkg = if $is_windows { $'@nushell/windows-($env.node_arch)' } else { $'@nushell/($env.node_os)-($env.node_arch)' }
+        $env.node_pkg = if $is_windows { $'@nushell/windows-($env.node_arch)' } else { $'@nushell/($env.node_os)-($env.node_arch)' }
 
         # Check if the package exists before publish
         let check = (do -i { npm info $'($env.node_pkg)@($NPM_VERSION)' | complete })
