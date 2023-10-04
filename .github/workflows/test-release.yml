@@ -16,7 +16,7 @@ jobs:
     name: Test Nu@npm on x64-${{matrix.os}}
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v4.1.0
 
     - name: Install node
       uses: actions/setup-node@v3
@@ -27,9 +27,9 @@ jobs:
     - name: Test Nu Install from NPM Registry
       shell: bash
       run: |
-        export NU_VERSION='latest'
-        echo "Installing Nu@$NU_VERSION from npm..."
-        npm i --location=global "nushell@$NU_VERSION" --registry https://registry.npmjs.org
+        export NU_TAG=`jq -r .distTag npm/app/package.json`
+        echo "Installing Nu@$NU_TAG from npm..."
+        npm i --location=global "nushell@$NU_TAG" --registry https://registry.npmjs.org
         echo 'Nu version info:'; nu -c 'version'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
