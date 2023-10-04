@@ -90,8 +90,8 @@ export def 'log' [
 
 # Print a horizontal line marker
 export def 'hr-line' [
-    --prepend-line(-p): bool
-    --append-line(-a): bool
+    --prepend-line(-p),
+    --append-line(-a),
 ] {
     if $prepend_line { print (char nl) }
     print $'(ansi g)---------------------------------------------------------------------------->(ansi reset)'
@@ -101,7 +101,7 @@ export def 'hr-line' [
 # Check nushell version and notify user to upgrade it
 export def 'check_nushell' [] {
 
-  let MIN_NU_VER = '0.78.0'
+  let MIN_NU_VER = '0.85.0'
 
   let currentNu = (version).version
   if (is-lower-ver $currentNu $MIN_NU_VER) {

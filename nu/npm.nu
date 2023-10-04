@@ -177,7 +177,7 @@ def 'publish-base-pkg' [] {
     cp README.* npm/app/; cd npm/app
     aria2c https://raw.githubusercontent.com/nushell/nushell/main/LICENSE
     # requires optional dependencies to be present in the registry
-    yarn install; yarn build
+    yarn install --immutable; yarn build
     let tag = ('package.json' | open | get distTag)
     print $'Publishing nushell package to npm ($tag) tag...'
     npm publish --access public --tag $tag
