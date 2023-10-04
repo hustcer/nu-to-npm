@@ -17,12 +17,12 @@ default:
 
 # Install all dependencies
 i:
-  cd npm/app; yarn install
+  cd npm/app; pnpm install
 
 # 该任务支持选项:
 #   `--dist-tag` 该选项的值会直接传给 `npm publish --tag`, 默认值为 `latest`
 #   `--nu-ver` 该选项用于指定下载和发布到 npm 的 nushell 版本, 默认值与 `version` 相同, 如果指定则会下载指定版本的 nushell 并发布到 npm
-# 更新仓库里所有 nushell 相关包的 npm 版本号，创建 git tag 并推送到远程仓库, eg: just bump-ver 0.79.2 --dist-tag beta --nu-ver 0.79.0
+# 更新仓库里所有 nushell 相关包的 npm 版本号，创建 git tag 并推送到远程仓库, eg: just bump-ver 0.85.1 --dist-tag beta --nu-ver 0.85.0
 bump-ver version *FLAGS:
   @nu nu/bump-ver.nu {{version}} {{FLAGS}}
 

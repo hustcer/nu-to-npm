@@ -173,15 +173,15 @@ def 'publish-base-pkg' [] {
         exit 0
     }
 
+    npm i --location=global cnpm pnpm --registry=https://registry.npmmirror.com
     # Download the package and publish it
     cp README.* npm/app/; cd npm/app
     aria2c https://raw.githubusercontent.com/nushell/nushell/main/LICENSE
     # requires optional dependencies to be present in the registry
-    yarn install; yarn build
+    pnpm install; pnpm build
     let tag = ('package.json' | open | get distTag)
     print $'Publishing nushell package to npm ($tag) tag...'
     npm publish --access public --tag $tag
     print 'Start to sync packages to npmmirror.com ...'
-    npm i --location=global cnpm --registry=https://registry.npmmirror.com
     cnpm sync nushell
 }
