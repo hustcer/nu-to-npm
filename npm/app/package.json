@@ -7,7 +7,7 @@
   "distTag": "beta",
   "nuVer": "0.85.0",
   "license": "MIT",
-  "description": "Publish the official nushell binary to npm by @hustcer",
+  "description": "The official release of Nushell with default features included.",
   "keywords": ["cli", "command", "nu", "nushell", "script", "shell", "terminal"],
   "scripts": {
     "typecheck": "tsc --noEmit",
