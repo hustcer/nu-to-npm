@@ -27,7 +27,7 @@ jobs:
 
       - uses: hustcer/setup-nu@v3.6
         with:
-          version: 0.85
+          version: 0.86
 
       - name: Publish to NPM
         run: nu nu/npm.nu each
@@ -54,7 +54,7 @@ jobs:
 
       - uses: hustcer/setup-nu@v3.6
         with:
-          version: 0.85
+          version: 0.86
 
       - name: Publish the base package
         continue-on-error: true
