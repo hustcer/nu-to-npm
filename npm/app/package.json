@@ -1,16 +1,14 @@
 {
   "name": "nushell",
   "version": "0.86.0",
-  "bin":
-  {
+  "bin": {
     "nu": "lib/index.js"
   },
   "distTag": "latest",
   "nuVer": "0.86.0",
   "license": "MIT",
   "description": "The official release of Nushell with default features included.",
-  "keywords":
-  [
+  "keywords": [
     "cli",
     "command",
     "nu",
@@ -19,35 +17,30 @@
     "shell",
     "terminal"
   ],
-  "scripts":
-  {
+  "scripts": {
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "build": "tsc",
     "dev": "pnpm build && node lib/index.js"
   },
-  "repository":
-  {
+  "repository": {
     "type": "git",
     "url": "git+https://github.com/nushell/nushell"
   },
   "author": "hustcer <hustcer@gmail.com>",
-  "bugs":
-  {
+  "bugs": {
     "url": "https://github.com/nushell/nushell/issues"
   },
   "homepage": "https://github.com/hustcer/nu-to-npm#readme",
-  "devDependencies":
-  {
+  "devDependencies": {
     "@types/node": "^20.8.8",
     "@typescript-eslint/eslint-plugin": "^6.9.0",
     "@typescript-eslint/parser": "^6.9.0",
     "eslint": "^8.52.0",
     "typescript": "^5.2.2"
   },
-  "optionalDependencies":
-  {
+  "optionalDependencies": {
     "@nushell/windows-x64": "0.86.0",
     "@nushell/windows-arm64": "0.86.0",
     "@nushell/linux-x64": "0.86.0",
@@ -57,20 +50,16 @@
     "@nushell/darwin-x64": "0.86.0",
     "@nushell/darwin-arm64": "0.86.0"
   },
-  "eslintConfig":
-  {
-    "extends":
-    [
+  "eslintConfig": {
+    "extends": [
       "eslint:recommended",
       "plugin:@typescript-eslint/recommended"
     ],
     "parser": "@typescript-eslint/parser",
-    "plugins":
-    [
+    "plugins": [
       "@typescript-eslint"
     ],
-    "ignorePatterns":
-    [
+    "ignorePatterns": [
       "lib/*"
     ],
     "root": true
