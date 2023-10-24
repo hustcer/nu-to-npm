@@ -3,7 +3,7 @@
     "indentSize": 2,
     "lineWidth": 160,
     "indentStyle": "space",
-    "ignore": ["lib", "node_modules"]
+    "ignore": ["lib", "node_modules", "package.json"]
   },
   "linter": {
     "enabled": false
