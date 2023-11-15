@@ -16,7 +16,7 @@ jobs:
     name: Test Nu@npm on x64-${{matrix.os}}
     steps:
     - name: Checkout
-      uses: actions/checkout@v4.1.0
+      uses: actions/checkout@v4.1.1
 
     - name: Install node
       uses: actions/setup-node@v3
