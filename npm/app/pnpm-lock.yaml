@@ -6,29 +6,26 @@ settings:
 
 optionalDependencies:
   '@nushell/darwin-arm64':
-    specifier: 0.86.0
-    version: 0.86.0
-  '@nushell/darwin-x64':
-    specifier: 0.86.0
-    version: 0.86.0
+    specifier: 0.87.1
+    version: 0.87.1
   '@nushell/linux-arm':
-    specifier: 0.86.0
-    version: 0.86.0
+    specifier: 0.87.1
+    version: 0.87.1
   '@nushell/linux-arm64':
-    specifier: 0.86.0
-    version: 0.86.0
+    specifier: 0.87.1
+    version: 0.87.1
   '@nushell/linux-riscv64':
-    specifier: 0.86.0
-    version: 0.86.0
+    specifier: 0.87.1
+    version: 0.87.1
   '@nushell/linux-x64':
-    specifier: 0.86.0
-    version: 0.86.0
+    specifier: 0.87.1
+    version: 0.87.1
   '@nushell/windows-arm64':
-    specifier: 0.86.0
-    version: 0.86.0
+    specifier: 0.87.1
+    version: 0.87.1
   '@nushell/windows-x64':
-    specifier: 0.86.0
-    version: 0.86.0
+    specifier: 0.87.1
+    version: 0.87.1
 
 devDependencies:
   '@types/node':
@@ -132,64 +129,56 @@ packages:
       fastq: 1.15.0
     dev: true
 
-  /@nushell/darwin-arm64@0.86.0:
-    resolution: {integrity: sha512-KS1pGnQwhNF5672yS0IHnLPmi/J4jOaLCHL0n8sEREGeXe6BK0QMlH12MdnvFd9lgLdclH+K5crVuaX8lGTRxA==}
+  /@nushell/darwin-arm64@0.87.1:
+    resolution: {integrity: sha512-0V9ANzsaG7FnO463SV5jLx3ntqOUcgNHcK46LNX7mto4Gi/Cz18xaeZvoJWVGWR1z7v3IdnBsf8ovsrD64aoRQ==}
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
     dev: false
     optional: true
 
-  /@nushell/darwin-x64@0.86.0:
-    resolution: {integrity: sha512-cl5KVEB5Ny6E80Rfsk/aUdsWe0/4fU+t/U66UQNVwB7Uc4SMWUvKmBx20qpgr+kuagB9JPHqliJPhng17qn08g==}
-    cpu: [x64]
-    os: [darwin]
-    requiresBuild: true
-    dev: false
-    optional: true
-
-  /@nushell/linux-arm64@0.86.0:
-    resolution: {integrity: sha512-NBVC5aqRtJNpordUXSV1n3WIjbpMa9RQsTa4MJNF4jLMH0D63QGVU/eIrru4599DqeruqMXdkBhKDbwMGLQaQQ==}
+  /@nushell/linux-arm64@0.87.1:
+    resolution: {integrity: sha512-SljbjAIFw1gBGXEtyxHQQZ1nNqyQ+/Sxcj53pPHzbhIDApjhn2O5d9UnJ5SDClH+9QaGuDGNYreQsaQf5qmZGA==}
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
     dev: false
     optional: true
 
-  /@nushell/linux-arm@0.86.0:
-    resolution: {integrity: sha512-rBG9DdiIWrs/PFT3qxmSyOxQHL6Gi6pHbuP+PoPAsysryG1hjdMNCOyaS0DHrNmTaG6jFrYAughYlPSDlBEitA==}
+  /@nushell/linux-arm@0.87.1:
+    resolution: {integrity: sha512-8bxNIcI3OhSBksa4CTq3La1Y9ifAZbvrA2EFHSb8FMKsV9lmfiaIq9Ky2S5rhKV8jr8B4rRuY+tjMnIRa+rKsQ==}
     cpu: [arm]
     os: [linux]
     requiresBuild: true
     dev: false
     optional: true
 
-  /@nushell/linux-riscv64@0.86.0:
-    resolution: {integrity: sha512-z62V0ICPhqhoT7nK0SJe+0LxI3EOcgqLt742cuhN98uaHCM4xD8tiFsQ38A1O7TE5A19HuzW+dMEoS4UdBZtAg==}
+  /@nushell/linux-riscv64@0.87.1:
+    resolution: {integrity: sha512-tGCc9bWnhft64MH86DSdcWumAwO8hswXWEeuOmfccT7b2t+KDcmbTv7/u0y+nw8UturfuzMUyESDkASjZ+msTw==}
     cpu: [riscv64]
     os: [linux]
     requiresBuild: true
     dev: false
     optional: true
 
-  /@nushell/linux-x64@0.86.0:
-    resolution: {integrity: sha512-enEN72T3sSyczO0zTJ5f3wIyO/PHbicS6cIZi75R652AwBG3nv/nboQLF9FhS5akWPJRbvzHXG6UhXdI5aWSrQ==}
+  /@nushell/linux-x64@0.87.1:
+    resolution: {integrity: sha512-oBZHIcwgBGAxZxqs1yFnUx8eeG9uMYA8vS/rZA100rtNboQkUXTbT50F376SZrdhuE3KXPUQMfW9SLlofe4LWQ==}
     cpu: [x64]
     os: [linux]
     requiresBuild: true
     dev: false
     optional: true
 
-  /@nushell/windows-arm64@0.86.0:
-    resolution: {integrity: sha512-Se3x+m1edmcm05YtMs5HnZAJmu2XV2J2NG3hcPDBZLwL3Npvftk4PxOBcRjYQz/HVIZ4IIe64bKcEV8bR2JX2A==}
+  /@nushell/windows-arm64@0.87.1:
+    resolution: {integrity: sha512-p3Rai9kPidjfsPGokSdOkJ9za3HOT61kVOyxxiTAMjNlJDbkLRZYLAocVcF5vra4Oo7ks7X1ODoBBdvmTZ6IDg==}
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
     dev: false
     optional: true
 
-  /@nushell/windows-x64@0.86.0:
-    resolution: {integrity: sha512-bNQokLb0Xe+w+JdduT/10Rv3Ge3l5vUb+IGi/jg7pohYlzbnoDANYN0ym78ezh2ak2QJx1KtzbgcgEBSA3Mn5w==}
+  /@nushell/windows-x64@0.87.1:
+    resolution: {integrity: sha512-vIsetkOC1fIyCFyHVYxkjZyXqiY4XRSG0xg9fAnloJKGAhYubTPVT+ptPADv06ESPFj5P7ghb3V08LkBHVslWA==}
     cpu: [x64]
     os: [win32]
     requiresBuild: true
