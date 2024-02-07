@@ -55,8 +55,7 @@ def main [
     | update optionalDependencies {|it| ($it.optionalDependencies | rotate --ccw pkg ver | filter $released | transpose -r | into record) }
     | save -f $file
 
-  biome format --write npm/app
-  biome format --write npm/app/package.json
+  prettier --write --single-quote npm/app/**/*.{json,ts}
   git commit -am $'chore: bump version to ($version)'
   git tag -am $'chore: bump version to ($version)' $'v($version)'
   git push --follow-tags

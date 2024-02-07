@@ -1,14 +1,22 @@
 {
   "name": "nushell",
-  "version": "0.89.0",
+  "version": "0.90.1",
   "bin": {
     "nu": "lib/index.js"
   },
   "distTag": "latest",
-  "nuVer": "0.89.0",
+  "nuVer": "0.90.1",
   "license": "MIT",
   "description": "The official release of Nushell with default features included.",
-  "keywords": ["cli", "command", "nu", "nushell", "script", "shell", "terminal"],
+  "keywords": [
+    "cli",
+    "command",
+    "nu",
+    "nushell",
+    "script",
+    "shell",
+    "terminal"
+  ],
   "scripts": {
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
@@ -33,19 +41,26 @@
     "typescript": "^5.2.2"
   },
   "optionalDependencies": {
-    "@nushell/windows-x64": "0.89.0",
-    "@nushell/windows-arm64": "0.89.0",
-    "@nushell/linux-x64": "0.89.0",
-    "@nushell/linux-arm64": "0.89.0",
-    "@nushell/linux-arm": "0.89.0",
-    "@nushell/darwin-x64": "0.89.0",
-    "@nushell/darwin-arm64": "0.89.0"
+    "@nushell/windows-x64": "0.90.1",
+    "@nushell/windows-arm64": "0.90.1",
+    "@nushell/linux-x64": "0.90.1",
+    "@nushell/linux-arm64": "0.90.1",
+    "@nushell/linux-arm": "0.90.1",
+    "@nushell/darwin-x64": "0.90.1",
+    "@nushell/darwin-arm64": "0.90.1"
   },
   "eslintConfig": {
-    "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended"
+    ],
     "parser": "@typescript-eslint/parser",
-    "plugins": ["@typescript-eslint"],
-    "ignorePatterns": ["lib/*"],
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "ignorePatterns": [
+      "lib/*"
+    ],
     "root": true
   },
   "packageManager": "pnpm@8.8.0"
