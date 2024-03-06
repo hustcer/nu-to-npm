@@ -16,7 +16,7 @@ def main [
     '@nushell/darwin-x64': 'x86_64-apple-darwin',
     '@nushell/linux-arm': 'armv7-unknown-linux-gnueabihf',
     '@nushell/linux-arm64': 'aarch64-unknown-linux-gnu',
-    # '@nushell/linux-riscv64': 'riscv64gc-unknown-linux-gnu',
+    '@nushell/linux-riscv64': 'riscv64gc-unknown-linux-gnu',
     '@nushell/linux-x64': 'x86_64-unknown-linux-musl',
     '@nushell/windows-arm64': 'aarch64-pc-windows-msvc',
     '@nushell/windows-x64': 'x86_64-pc-windows-msvc',

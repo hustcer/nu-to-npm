@@ -41,13 +41,14 @@
     "typescript": "^5.2.2"
   },
   "optionalDependencies": {
-    "@nushell/windows-x64": "0.90.1",
-    "@nushell/windows-arm64": "0.90.1",
-    "@nushell/linux-x64": "0.90.1",
-    "@nushell/linux-arm64": "0.90.1",
-    "@nushell/linux-arm": "0.90.1",
+    "@nushell/darwin-arm64": "0.90.1",
     "@nushell/darwin-x64": "0.90.1",
-    "@nushell/darwin-arm64": "0.90.1"
+    "@nushell/linux-arm": "0.90.1",
+    "@nushell/linux-arm64": "0.90.1",
+    "@nushell/linux-riscv64": "0.89.0",
+    "@nushell/linux-x64": "0.90.1",
+    "@nushell/windows-arm64": "0.90.1",
+    "@nushell/windows-x64": "0.90.1"
   },
   "eslintConfig": {
     "extends": [

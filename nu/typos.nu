@@ -2,7 +2,7 @@
 
 def main [output: string] {
 
-  if not (which typos | length) > 0 {
+  if not ((which typos | length) > 0) {
     print $'(ansi y)[WARN]: (ansi reset)`Typos` not installed, please install it by running `brew install typos-cli`...'
     exit 2
   }
