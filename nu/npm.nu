@@ -139,7 +139,7 @@ def 'publish-each-pkg' [] {
         # note: windows binaries has '.exe' extension
         hr-line
         print $'Going to cp: ($pkg_dir)/($bin_dir)/($bin) to release directory...'
-        cp $'($__dir)/README.*' $rls_dir
+        cp ($'($__dir)/README.*' | into glob) $rls_dir
         cp $'($pkg_dir)/($bin_dir)/LICENSE' $rls_dir
         cp $'($pkg_dir)/($bin_dir)/($bin)' $'($rls_dir)/bin'
         # publish the package
