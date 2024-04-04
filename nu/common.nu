@@ -102,7 +102,7 @@ export def 'hr-line' [
 # Check nushell version and notify user to upgrade it
 export def 'check_nushell' [] {
 
-  let MIN_NU_VER = '0.91.0'
+  let MIN_NU_VER = '0.92.1'
 
   let currentNu = (version).version
   if (is-lower-ver $currentNu $MIN_NU_VER) {

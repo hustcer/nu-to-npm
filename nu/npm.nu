@@ -153,7 +153,10 @@ def 'publish-each-pkg' [] {
 
     print 'Start to sync packages to npmmirror.com ...'; hr-line
     npm i --location=global cnpm --registry=https://registry.npmmirror.com
-    open $'($npm_dir)/app/package.json' | get optionalDependencies | columns | each {|it| cnpm sync $it; hr-line -a }
+    open $'($npm_dir)/app/package.json'
+        | get optionalDependencies
+        | columns
+        | each {|it| cnpm sync $it; hr-line -a }
 
     print 'All packages have been published successfully:'
     print 'Npm directory tree:'; hr-line
