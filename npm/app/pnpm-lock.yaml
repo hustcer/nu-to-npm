@@ -7,6 +7,31 @@ settings:
 importers:
 
   .:
+    optionalDependencies:
+      '@nushell/darwin-arm64':
+        specifier: 0.93.0
+        version: 0.93.0
+      '@nushell/darwin-x64':
+        specifier: 0.93.0
+        version: 0.93.0
+      '@nushell/linux-arm':
+        specifier: 0.93.0
+        version: 0.93.0
+      '@nushell/linux-arm64':
+        specifier: 0.93.0
+        version: 0.93.0
+      '@nushell/linux-riscv64':
+        specifier: 0.93.0
+        version: 0.93.0
+      '@nushell/linux-x64':
+        specifier: 0.93.0
+        version: 0.93.0
+      '@nushell/windows-arm64':
+        specifier: 0.93.0
+        version: 0.93.0
+      '@nushell/windows-x64':
+        specifier: 0.93.0
+        version: 0.93.0
     devDependencies:
       '@types/node':
         specifier: ^20.9.0
@@ -70,6 +95,46 @@ packages:
   '@nodelib/fs.walk@1.2.8':
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
+
+  '@nushell/darwin-arm64@0.93.0':
+    resolution: {integrity: sha512-6CIgDYNIQN0rXwRzomnRZNFoq4dCwo99KURfhk4znZjUP/i+SKyUQQAn9MBdxYMTlmQhn5qR0D+x73+DnLrYQQ==}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@nushell/darwin-x64@0.93.0':
+    resolution: {integrity: sha512-tW7tdqO/yCNBoSOf4aXNkmlx0vDldy2wj9KobGIOdWelgMCNNXdjpZQePdnQZCAj4lvELwvysjpj6AEn4fhCSg==}
+    cpu: [x64]
+    os: [darwin]
+
+  '@nushell/linux-arm64@0.93.0':
+    resolution: {integrity: sha512-6JWBtkJ54NhANuMD5ri1ovFbP3sgc3aYAyATUVWNI0J1vYFwyVIgKCfVTNx06hhwJf9ank8wnyq+aqOMwtR80w==}
+    cpu: [arm64]
+    os: [linux]
+
+  '@nushell/linux-arm@0.93.0':
+    resolution: {integrity: sha512-pJSjOc3HdFyXdxGPAteWeXLV8d88eQYZsXeLGJArdc2HpuTbY1dthiynAmfpkckR5YYGz12Fx5LctImkqt3b4A==}
+    cpu: [arm]
+    os: [linux]
+
+  '@nushell/linux-riscv64@0.93.0':
+    resolution: {integrity: sha512-ycjVzbIqJEf/ZOl+LMA49WQaFujLii6d4j/zko0ZR94J1CES/+HlNtHe3WXRTeODT13tywBIVrjE7s1y6mgz9Q==}
+    cpu: [riscv64]
+    os: [linux]
+
+  '@nushell/linux-x64@0.93.0':
+    resolution: {integrity: sha512-K95lFXeEX0/RmdPm3ZhNxmSXWJvpfPwSoWLkK3mKBL2N3XMVi8tfJmegJ/7Mf414xoR6krsgYMWBN0QvHOzF8A==}
+    cpu: [x64]
+    os: [linux]
+
+  '@nushell/windows-arm64@0.93.0':
+    resolution: {integrity: sha512-zzFeNH40NY3HcD4YqEXv0uUFQP78ekL0nPEhy2m8P3MrYgQxF1lRXUiDKL4/hMFGve+ZgyU8uzWEw55MdI+qdg==}
+    cpu: [arm64]
+    os: [win32]
+
+  '@nushell/windows-x64@0.93.0':
+    resolution: {integrity: sha512-TWIsmk1jqcf5zb1PTXDjUnUTweV3CB1pd6HfW3vbvjihb3FerorOAiJiHbWl60DYJCzHcFPSIiKn1hYPnML3zw==}
+    cpu: [x64]
+    os: [win32]
 
   '@types/json-schema@7.0.13':
     resolution: {integrity: sha512-RbSSoHliUbnXj3ny0CNFOoxrIDV6SUGyStHsvDqosw6CkdPV8TtWGlfecuK4ToyMEAql6pzNxgCFKanovUzlgQ==}
@@ -598,6 +663,30 @@ snapshots:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.15.0
+
+  '@nushell/darwin-arm64@0.93.0':
+    optional: true
+
+  '@nushell/darwin-x64@0.93.0':
+    optional: true
+
+  '@nushell/linux-arm64@0.93.0':
+    optional: true
+
+  '@nushell/linux-arm@0.93.0':
+    optional: true
+
+  '@nushell/linux-riscv64@0.93.0':
+    optional: true
+
+  '@nushell/linux-x64@0.93.0':
+    optional: true
+
+  '@nushell/windows-arm64@0.93.0':
+    optional: true
+
+  '@nushell/windows-x64@0.93.0':
+    optional: true
 
   '@types/json-schema@7.0.13': {}
 
