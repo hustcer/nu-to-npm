@@ -54,8 +54,8 @@ def main [
     | update optionalDependencies {|it| ($PKG_MAP | transpose k v | update v $version | transpose -r | into record) }
     | update optionalDependencies {|it| ($it.optionalDependencies | rotate --ccw pkg ver | filter $released | transpose -r | into record) }
 
+  # Break the pipe, as we can't save output to the file while it's being read
   $updated | save -f $file
-
   prettier --write --single-quote npm/app/**/*.{json,ts}
   git commit -am $'chore: bump version to ($version)'
   git tag -am $'chore: bump version to ($version)' $'v($version)'
