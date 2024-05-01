@@ -46,14 +46,15 @@ def main [
   let file = 'npm/app/package.json'
   # Filter out the binaries that are not released
   let released = {|x| ($binaries | find ($PKG_MAP | get $x.pkg) | length) > 0 }
-  $file
+  let updated = $file
     | open
     | update nuVer $nuVer       # Nushell version to download and release to npm
     | update version $version   # Nushell will be released under this npm version
     | update distTag $dist_tag  # Nushell will be released to this npm dist-tag
     | update optionalDependencies {|it| ($PKG_MAP | transpose k v | update v $version | transpose -r | into record) }
     | update optionalDependencies {|it| ($it.optionalDependencies | rotate --ccw pkg ver | filter $released | transpose -r | into record) }
-    | save -f $file
+
+  $updated | save -f $file
 
   prettier --write --single-quote npm/app/**/*.{json,ts}
   git commit -am $'chore: bump version to ($version)'
