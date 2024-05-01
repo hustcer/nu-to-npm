@@ -84,16 +84,19 @@ let NU_VERSION = ($'($npm_dir)/app/package.json' | open | get nuVer)
 
 # Publish Nu binaries to npmjs.com
 def main [
-  type: string = 'base', # Npm publish type: 'base' or 'each'
+  type: string = 'base',  # Npm publish type: 'base' or 'each'
+  --sync,                 # Sync packages to npmmirror.com after publishing
 ] {
   match $type {
-    'base' => { publish-base-pkg }
-    'each' => { publish-each-pkg }
+    'base' => { publish-base-pkg --sync=$sync }
+    'each' => { publish-each-pkg --sync=$sync }
     _ => { print $'Invalid publish type: ($type)' }
   }
 }
 
-def 'publish-each-pkg' [] {
+def 'publish-each-pkg' [
+  --sync,                 # Sync packages to npmmirror.com after publishing
+] {
   print $'Current working directory: ($__dir)'
   # print 'Current env:'; print $env
   mkdir pkgs; cd pkgs
@@ -153,6 +156,11 @@ def 'publish-each-pkg' [] {
     cd $pkg_dir
   }
   print (char nl)
+  print 'Npm directory tree:'; hr-line
+  tree $npm_dir
+  print 'Pkg directory tree:'; hr-line
+  tree $pkg_dir
+  if not $sync { return }
 
   print 'Start to sync packages to npmmirror.com ...'; hr-line
   if not (is-installed cnpm) {
@@ -164,13 +172,11 @@ def 'publish-each-pkg' [] {
       | each {|it| cnpm sync $it; hr-line -a }
 
   print 'All packages have been published successfully:'
-  print 'Npm directory tree:'; hr-line
-  tree $npm_dir
-  print 'Pkg directory tree:'; hr-line
-  tree $pkg_dir
 }
 
-def 'publish-base-pkg' [] {
+def 'publish-base-pkg' [
+  --sync,                 # Sync packages to npmmirror.com after publishing
+] {
   print $'Current working directory: ($__dir)'
   # print 'Current env:'; print $env
   let version = ('npm/app/package.json' | open | get version)
@@ -181,7 +187,9 @@ def 'publish-base-pkg' [] {
     exit 0
   }
 
-  npm i --location=global cnpm pnpm --registry=https://registry.npmmirror.com
+  if not (is-installed cnpm) {
+    npm i --location=global cnpm pnpm --registry=https://registry.npmmirror.com
+  }
   # Download the package and publish it
   cp README.* npm/app/; cd npm/app
   aria2c https://raw.githubusercontent.com/nushell/nushell/main/LICENSE
@@ -191,6 +199,6 @@ def 'publish-base-pkg' [] {
   let tag = ('package.json' | open | get distTag)
   print $'Publishing nushell package to npm ($tag) tag...'
   npm publish --access public --tag $tag --registry https://registry.npmjs.com/
-  print 'Start to sync packages to npmmirror.com ...'
-  cnpm sync nushell
+  print $'(char nl)Start to sync packages to npmmirror.com ...'
+  if $sync { cnpm sync nushell }
 }

@@ -30,7 +30,7 @@ jobs:
           version: 0.93.0
 
       - name: Publish to NPM
-        run: nu nu/npm.nu each
+        run: nu nu/npm.nu each --sync
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -59,7 +59,7 @@ jobs:
       - name: Publish the base package
         continue-on-error: true
         shell: nu {0}
-        run: nu nu/npm.nu base
+        run: nu nu/npm.nu base --sync
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
