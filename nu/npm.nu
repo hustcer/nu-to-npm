@@ -27,7 +27,7 @@
 #  - [√] Refactor: Publish all packages with this script: nushell, @nushell/linux-x64, @nushell/linux-riscv64, etc.
 #  - [√] Missing @nushell/windows-arm64
 
-use common.nu [hr-line]
+use common.nu [hr-line, is-installed]
 
 let pkgs = [
   'aarch64-apple-darwin'
@@ -82,7 +82,10 @@ let NPM_VERSION = $env.RELEASE_VERSION
 # let NU_VERSION = '0.79.0'
 let NU_VERSION = ($'($npm_dir)/app/package.json' | open | get nuVer)
 
-def main [type: string = 'base'] {
+# Publish Nu binaries to npmjs.com
+def main [
+  type: string = 'base', # Npm publish type: 'base' or 'each'
+] {
   match $type {
     'base' => { publish-base-pkg }
     'each' => { publish-each-pkg }
@@ -110,7 +113,7 @@ def 'publish-each-pkg' [] {
     $env.node_pkg = if $is_windows { $'@nushell/windows-($env.node_arch)' } else { $'@nushell/($env.node_os)-($env.node_arch)' }
 
     # Check if the package exists before publish
-    let check = (do -i { npm info $'($env.node_pkg)@($NPM_VERSION)' | complete })
+    let check = (do -i { npm info $'($env.node_pkg)@($NPM_VERSION)' --registry=https://registry.npmjs.com/ | complete })
     if $check.exit_code == 0 {
       print $'Package ($env.node_pkg)@($NPM_VERSION) already exists, skip publishing'
       continue
@@ -134,7 +137,7 @@ def 'publish-each-pkg' [] {
         | str replace '${node_pkg}' $env.node_pkg
         | str replace '${node_arch}' $env.node_arch
         | str replace '${node_version}' $NPM_VERSION
-        | save $'($rls_dir)/package.json'
+        | save -f $'($rls_dir)/package.json'
     # copy the binary into the package
     # note: windows binaries has '.exe' extension
     hr-line
@@ -146,13 +149,15 @@ def 'publish-each-pkg' [] {
     cd $rls_dir
     let dist_tag = ($'($npm_dir)/app/package.json' | open | get distTag)
     print $'Publishing package: ($env.node_pkg) to ($dist_tag) tag...'; hr-line
-    npm publish --access public --tag $dist_tag
+    npm publish --access public --tag $dist_tag --registry https://registry.npmjs.com/
     cd $pkg_dir
   }
   print (char nl)
 
   print 'Start to sync packages to npmmirror.com ...'; hr-line
-  npm i --location=global cnpm --registry=https://registry.npmmirror.com
+  if not (is-installed cnpm) {
+    npm i --location=global cnpm --registry=https://registry.npmmirror.com
+  }
   open $'($npm_dir)/app/package.json'
       | get optionalDependencies
       | columns
@@ -170,7 +175,7 @@ def 'publish-base-pkg' [] {
   # print 'Current env:'; print $env
   let version = ('npm/app/package.json' | open | get version)
   # Check if the package exists before publish
-  let check = (do -i { npm info $'nushell@($version)' | complete })
+  let check = (do -i { npm info $'nushell@($version)' --registry=https://registry.npmjs.com/ | complete })
   if $check.exit_code == 0 {
     print $'Package nushell@($version) already exists, skip publishing'
     exit 0
@@ -185,7 +190,7 @@ def 'publish-base-pkg' [] {
   pnpm install --no-frozen-lockfile; pnpm build
   let tag = ('package.json' | open | get distTag)
   print $'Publishing nushell package to npm ($tag) tag...'
-  npm publish --access public --tag $tag
+  npm publish --access public --tag $tag --registry https://registry.npmjs.com/
   print 'Start to sync packages to npmmirror.com ...'
   cnpm sync nushell
 }
