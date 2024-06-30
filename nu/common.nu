@@ -2,7 +2,7 @@
 
 export def windows? [] {
   # Windows / Darwin
-  (sys).host.name == 'Windows'
+  (sys host | get name) == 'Windows'
 }
 
 # Get the specified env key's value or ''
@@ -38,7 +38,7 @@ export def compare-ver [
   # Ignore '-beta' or '-rc' suffix
   let v1 = ($source | split row '.' | each {|it| ($it | parse -r '(?P<v>\d+)' | get v | get 0 )})
   let v2 = ($dest | split row '.' | each {|it| ($it | parse -r '(?P<v>\d+)' | get v | get 0 )})
-  for $v in $v1 -n {
+  for $v in ($v1 | enumerate) {
     let c1 = ($v1 | get -i $v.index | default 0 | into int)
     let c2 = ($v2 | get -i $v.index | default 0 | into int)
     if $c1 > $c2 {
@@ -102,7 +102,7 @@ export def 'hr-line' [
 # Check nushell version and notify user to upgrade it
 export def 'check_nushell' [] {
 
-  let MIN_NU_VER = '0.92.1'
+  let MIN_NU_VER = '0.95.0'
 
   let currentNu = (version).version
   if (is-lower-ver $currentNu $MIN_NU_VER) {

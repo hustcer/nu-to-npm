@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4.1.3
+        uses: actions/checkout@v4.1.7
 
       - name: Set the release version
         shell: bash
@@ -23,9 +23,9 @@ jobs:
           node-version: '18'
           registry-url: 'https://registry.npmjs.org'
 
-      - uses: hustcer/setup-nu@v3.10
+      - uses: hustcer/setup-nu@v3
         with:
-          version: 0.93.0
+          version: 0.95.0
 
       - name: Publish the base package
         continue-on-error: true
@@ -44,7 +44,7 @@ jobs:
     name: Test Nu@npm on x64-${{matrix.os}}
     steps:
     - name: Checkout
-      uses: actions/checkout@v4.1.3
+      uses: actions/checkout@v4.1.7
 
     - name: Install node
       uses: actions/setup-node@v4.0.2
