@@ -32,6 +32,7 @@ jobs:
         shell: nu {0}
         run: nu nu/npm.nu base
         env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   test-npm-pkg:
