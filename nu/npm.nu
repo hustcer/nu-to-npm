@@ -145,6 +145,7 @@ def 'publish-each-pkg' [
     # note: windows binaries has '.exe' extension
     hr-line
     print $'Going to cp: ($pkg_dir)/($bin_dir)/($bin) to release directory...'
+    cp $'($__dir)/.npmrc' $rls_dir
     cp ($'($__dir)/README.*' | into glob) $rls_dir
     cp $'($pkg_dir)/($bin_dir)/LICENSE' $rls_dir
     cp $'($pkg_dir)/($bin_dir)/($bin)' $'($rls_dir)/bin'
@@ -192,6 +193,7 @@ def 'publish-base-pkg' [
   }
   # Download the package and publish it
   cp README.* npm/app/; cd npm/app
+  cp $'($__dir)/.npmrc' .
   aria2c https://raw.githubusercontent.com/nushell/nushell/main/LICENSE
   # requires optional dependencies to be present in the registry
   # Cannot install with "frozen-lockfile" because pnpm-lock.yaml is not up to date with package.json
