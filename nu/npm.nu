@@ -153,7 +153,7 @@ def 'publish-each-pkg' [
     cd $rls_dir
     let dist_tag = ($'($npm_dir)/app/package.json' | open | get distTag)
     print $'Publishing package: ($env.node_pkg) to ($dist_tag) tag...'; hr-line
-    npm publish --access public --tag $dist_tag --registry https://registry.npmjs.com/
+    npm publish --access public --tag $dist_tag
     cd $pkg_dir
   }
   print (char nl)
@@ -200,7 +200,7 @@ def 'publish-base-pkg' [
   pnpm install --no-frozen-lockfile; pnpm build
   let tag = ('package.json' | open | get distTag)
   print $'Publishing nushell package to npm ($tag) tag...'
-  npm publish --access public --tag $tag --registry https://registry.npmjs.com/
+  npm publish --access public --tag $tag
   print $'(char nl)Start to sync packages to npmmirror.com ...'
   if $sync { cnpm sync nushell }
 }
