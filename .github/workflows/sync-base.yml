@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - feature/sync-base
+  workflow_dispatch:
 
 jobs:
   publish-npm-base:
