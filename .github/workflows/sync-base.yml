@@ -26,7 +26,7 @@ jobs:
 
       - uses: hustcer/setup-nu@v3
         with:
-          version: 0.98.0
+          version: '*'
 
       - name: Publish the base package
         continue-on-error: true
