@@ -52,7 +52,7 @@ def main [
     | update version $version   # Nushell will be released under this npm version
     | update distTag $dist_tag  # Nushell will be released to this npm dist-tag
     | update optionalDependencies {|it| ($PKG_MAP | transpose k v | update v $version | transpose -r | into record) }
-    | update optionalDependencies {|it| ($it.optionalDependencies | rotate --ccw pkg ver | filter $released | transpose -r | into record) }
+    | update optionalDependencies {|it| ($it.optionalDependencies | rotate --ccw pkg ver | where $released | transpose -r | into record) }
 
   # Break the pipe, as we can't save output to the file while it's being read
   $updated | save -f $file
