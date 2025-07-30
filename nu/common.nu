@@ -10,7 +10,7 @@ export def 'get-env' [
   key: string       # The key to get it's env value
   default?: string  # The default value for an empty env
 ] {
-  $env | get -i $key | default $default
+  $env | get -o $key | default $default
 }
 
 # Check if a git repo has the specified ref: could be a branch or tag, etc.
@@ -44,8 +44,8 @@ export def compare-ver [v1: string, v2: string] {
   # If you want to compare more parts use the following code:
   # for i in 0..([2 ($a | length) ($b | length)] | math max)
   for i in 0..2 {
-    let x = $a | get -i $i | default 0
-    let y = $b | get -i $i | default 0
+    let x = $a | get -o $i | default 0
+    let y = $b | get -o $i | default 0
     if $x > $y { return 1    }
     if $x < $y { return (-1) }
   }
@@ -104,7 +104,7 @@ export def 'hr-line' [
 # Check nushell version and notify user to upgrade it
 export def 'check_nushell' [] {
 
-  let MIN_NU_VER = '0.102.0'
+  let MIN_NU_VER = '0.106.0'
 
   let currentNu = (version).version
   if (is-lower-ver $currentNu $MIN_NU_VER) {

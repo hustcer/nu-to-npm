@@ -36,7 +36,7 @@ def main [
 
   # Query latest: https://api.github.com/repos/nushell/nushell/releases/latest
   let queryRls = (http get -e $'https://api.github.com/repos/nushell/nushell/releases/tags/($nuVer)')
-  if ($queryRls | get -i message | default '' | str contains -i 'Not Found') {
+  if ($queryRls | get -o message | default '' | str contains -i 'Not Found') {
     print $'The specified release (ansi r)($version) does not exist(ansi reset), please check the version number again.'
     exit 3
   }
