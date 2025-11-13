@@ -34,11 +34,11 @@
   },
   "homepage": "https://github.com/hustcer/nu-to-npm#readme",
   "devDependencies": {
-    "@types/node": "^20.14.9",
-    "@typescript-eslint/eslint-plugin": "^7.14.1",
-    "@typescript-eslint/parser": "^7.14.1",
+    "@types/node": "^22.19.1",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
     "eslint": "^8.57.0",
-    "typescript": "^5.5.2"
+    "typescript": "^5.9.3"
   },
   "optionalDependencies": {
     "@nushell/windows-x64": "0.108.0",
@@ -51,8 +51,8 @@
     "@nushell/darwin-arm64": "0.108.0"
   },
   "engines": {
-    "node": ">=20.0.0",
-    "pnpm": ">=9"
+    "node": ">=22.0.0",
+    "pnpm": ">=10"
   },
   "eslintConfig": {
     "extends": [
