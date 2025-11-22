@@ -14,17 +14,17 @@ To install `nu` by npm, simply run: `npm i -g nushell`, then you can run `nu` to
 
 ## FAQ
 
-1. Why is `Nushell` be published to `npm` even? There's nothing JavaScript about Nushell (that I know of?), Isn't npm...for js packages?
+1. Why is `Nushell` published to `npm` even? There's nothing JavaScript about Nushell (that I know of?), Isn't npm...for js packages?
 
-    The direct cause of publishing `Nushell` to `npm` was from `Nushell`'s user feedback: "I'd like to run nu scripts in environments that only have access to npm for installing dependencies.". In fact, we have encountered many times such situation with network limitations too, and publish to `npm` is a good approach, especially for a container environment that doesn't have `winget` or `brew` installed.
+    The direct cause of publishing `Nushell` to `npm` was from `Nushell`'s user feedback: "I'd like to run nu scripts in environments that only have access to npm for installing dependencies.". In fact, we have encountered many times such situation with network limitations too, and publishing to `npm` is a good approach, especially for a container environment that doesn't have `winget` or `brew` installed.
 
-    `npm` may be thought as typically for js packages, however, nowadays lots of binaries written by `rust` or `go` have been published to npm, such as `git-cliff`, `lefthook`, etc. they are all dev tools, and `nushell` is an engine that could power lots of develop involved scripts, and publish it to `npm` will make it easier to access especially for JS related projects, as they already have `npm` been installed.
+    `npm` may be thought as typically for js packages, however, nowadays lots of binaries written by `rust` or `go` have been published to npm, such as `git-cliff`, `lefthook`, etc. they are all dev tools, and `nushell` is an engine that could power lots of develop involved scripts, and publishing it to `npm` will make it easier to access especially for JS related projects, as they already have `npm` been installed.
 
 2. Will the npm version of `nu` I installed be bloated?
 
-    No. You can read that from the [base npm `package.json`](https://github.com/hustcer/nu-to-npm/blob/main/npm/app/package.json) and the [platform specific `package.json`](https://github.com/hustcer/nu-to-npm/blob/main/npm/package.json.tmpl), only the packages in `dependencies` will be installed, and the dependencies will be installed is **0**, for `optionalDependencies` that means `npm` will choose the exact one package according to your `os` and `cpu` arch. For example, I'm using a mac with Intel cpu inside and `npm` will install only `@nushell/darwin-x64` for me and nothing else. See? `npm` choose the right package for me with just one command.
+    No. You can read that from the [base npm `package.json`](https://github.com/hustcer/nu-to-npm/blob/main/npm/app/package.json) and the [platform specific `package.json`](https://github.com/hustcer/nu-to-npm/blob/main/npm/package.json.tmpl), only the packages in `dependencies` will be installed, and the number of dependencies to be installed is **0**, for `optionalDependencies` that means `npm` will choose the exact one package according to your `os` and `cpu` arch. For example, I'm using a mac with Intel cpu inside and `npm` will install only `@nushell/darwin-x64` for me and nothing else. See? `npm` choose the right package for me with just one command.
 
-3. Will the npm version of `nu` I installed has JS performance issue?
+3. Does the npm version of `nu` I installed have JS performance issues?
 
     Well, you can read that from the [source here](https://github.com/hustcer/nu-to-npm/blob/main/npm/app/src/index.ts). All node does is simply call the `nu` binary itself, and nothing more.
 
