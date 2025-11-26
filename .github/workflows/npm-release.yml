@@ -13,7 +13,7 @@ jobs:
       fail-fast: false
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Set the release version
         shell: bash
@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Set the release version
         shell: bash
@@ -75,7 +75,7 @@ jobs:
     name: Test Nu@npm on x64-${{matrix.os}}
     steps:
     - name: Checkout
-      uses: actions/checkout@v5
+      uses: actions/checkout@v6
 
     - name: Install node
       uses: actions/setup-node@v6
