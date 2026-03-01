@@ -1,11 +1,11 @@
 {
   "name": "nushell",
-  "version": "0.110.0",
+  "version": "0.111.0",
   "bin": {
     "nu": "lib/index.js"
   },
   "distTag": "latest",
-  "nuVer": "0.110.0",
+  "nuVer": "0.111.0",
   "license": "MIT",
   "description": "The official release of Nushell with default features included.",
   "keywords": [
@@ -41,14 +41,14 @@
     "typescript": "^5.9.3"
   },
   "optionalDependencies": {
-    "@nushell/windows-x64": "0.110.0",
-    "@nushell/windows-arm64": "0.110.0",
-    "@nushell/linux-x64": "0.110.0",
-    "@nushell/linux-riscv64": "0.110.0",
-    "@nushell/linux-arm64": "0.110.0",
-    "@nushell/linux-arm": "0.110.0",
-    "@nushell/darwin-x64": "0.110.0",
-    "@nushell/darwin-arm64": "0.110.0"
+    "@nushell/windows-x64": "0.111.0",
+    "@nushell/windows-arm64": "0.111.0",
+    "@nushell/linux-x64": "0.111.0",
+    "@nushell/linux-riscv64": "0.111.0",
+    "@nushell/linux-arm64": "0.111.0",
+    "@nushell/linux-arm": "0.111.0",
+    "@nushell/darwin-x64": "0.111.0",
+    "@nushell/darwin-arm64": "0.111.0"
   },
   "engines": {
     "node": ">=22.0.0",
