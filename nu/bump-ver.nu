@@ -56,7 +56,7 @@ def main [
 
   # Break the pipe, as we can't save output to the file while it's being read
   $updated | save -f $file
-  prettier --write --single-quote npm/app/**/*.{json,ts}
+  oxfmt --write --no-error-on-unmatched-pattern npm/app/**/*.{json,ts}
   git commit -am $'chore: bump version to ($version)'
   git tag -am $'chore: bump version to ($version)' $'v($version)'
   git push --follow-tags
