@@ -1,12 +1,6 @@
 {
   "name": "nushell",
   "version": "0.111.0",
-  "bin": {
-    "nu": "lib/index.js"
-  },
-  "distTag": "latest",
-  "nuVer": "0.111.0",
-  "license": "MIT",
   "description": "The official release of Nushell with default features included.",
   "keywords": [
     "cli",
@@ -17,6 +11,19 @@
     "shell",
     "terminal"
   ],
+  "homepage": "https://github.com/hustcer/nu-to-npm#readme",
+  "bugs": {
+    "url": "https://github.com/nushell/nushell/issues"
+  },
+  "license": "MIT",
+  "author": "hustcer <hustcer@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nushell/nushell"
+  },
+  "bin": {
+    "nu": "lib/index.js"
+  },
   "scripts": {
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
@@ -24,15 +31,6 @@
     "build": "tsc",
     "dev": "pnpm build && node lib/index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nushell/nushell"
-  },
-  "author": "hustcer <hustcer@gmail.com>",
-  "bugs": {
-    "url": "https://github.com/nushell/nushell/issues"
-  },
-  "homepage": "https://github.com/hustcer/nu-to-npm#readme",
   "devDependencies": {
     "@types/node": "^22.19.1",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
@@ -41,31 +39,33 @@
     "typescript": "^5.9.3"
   },
   "optionalDependencies": {
-    "@nushell/windows-x64": "0.111.0",
-    "@nushell/windows-arm64": "0.111.0",
-    "@nushell/linux-x64": "0.111.0",
-    "@nushell/linux-riscv64": "0.111.0",
-    "@nushell/linux-arm64": "0.111.0",
-    "@nushell/linux-arm": "0.111.0",
+    "@nushell/darwin-arm64": "0.111.0",
     "@nushell/darwin-x64": "0.111.0",
-    "@nushell/darwin-arm64": "0.111.0"
-  },
-  "engines": {
-    "node": ">=22.0.0",
-    "pnpm": ">=10"
+    "@nushell/linux-arm": "0.111.0",
+    "@nushell/linux-arm64": "0.111.0",
+    "@nushell/linux-riscv64": "0.111.0",
+    "@nushell/linux-x64": "0.111.0",
+    "@nushell/windows-arm64": "0.111.0",
+    "@nushell/windows-x64": "0.111.0"
   },
   "eslintConfig": {
     "extends": [
       "eslint:recommended",
       "plugin:@typescript-eslint/recommended"
     ],
+    "ignorePatterns": [
+      "lib/*"
+    ],
     "parser": "@typescript-eslint/parser",
     "plugins": [
       "@typescript-eslint"
     ],
-    "ignorePatterns": [
-      "lib/*"
-    ],
     "root": true
-  }
+  },
+  "engines": {
+    "node": ">=22.0.0",
+    "pnpm": ">=10"
+  },
+  "distTag": "latest",
+  "nuVer": "0.111.0"
 }

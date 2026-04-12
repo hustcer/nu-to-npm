@@ -1,4 +1,6 @@
 {
   "singleQuote": true,
+  "noErrorOnUnmatchedPattern": true,
+  "tabWidth": 2,
   "ignorePatterns": []
 }
