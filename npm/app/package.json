@@ -1,6 +1,6 @@
 {
   "name": "nushell",
-  "version": "0.113.0",
+  "version": "0.113.1",
   "description": "The official release of Nushell with default features included.",
   "keywords": [
     "cli",
@@ -39,14 +39,14 @@
     "typescript": "^5.9.3"
   },
   "optionalDependencies": {
-    "@nushell/darwin-arm64": "0.113.0",
-    "@nushell/darwin-x64": "0.113.0",
-    "@nushell/linux-arm": "0.113.0",
-    "@nushell/linux-arm64": "0.113.0",
-    "@nushell/linux-riscv64": "0.113.0",
-    "@nushell/linux-x64": "0.113.0",
-    "@nushell/windows-arm64": "0.113.0",
-    "@nushell/windows-x64": "0.113.0"
+    "@nushell/darwin-arm64": "0.113.1",
+    "@nushell/darwin-x64": "0.113.1",
+    "@nushell/linux-arm": "0.113.1",
+    "@nushell/linux-arm64": "0.113.1",
+    "@nushell/linux-riscv64": "0.113.1",
+    "@nushell/linux-x64": "0.113.1",
+    "@nushell/windows-arm64": "0.113.1",
+    "@nushell/windows-x64": "0.113.1"
   },
   "eslintConfig": {
     "extends": [
@@ -67,5 +67,5 @@
     "pnpm": ">=10"
   },
   "distTag": "latest",
-  "nuVer": "0.113.0"
+  "nuVer": "0.113.1"
 }
